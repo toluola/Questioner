@@ -71,6 +71,30 @@ html, body {margin:0; padding:0;}
   font-size:1.125em;
   padding:1.278em 0;
 }
+
+#landing > .header > .login {
+  font-size:.875em;
+  color:#03b4fe;
+  font-weight:bold;
+  text-decoration:none;
+  text-transform:uppercase;
+  transition:all .2s;
+  border:0 solid transparent;
+}
+#landing > .header > .login:before {
+  content:"";
+  display:inline-block;
+  width:1.429em;
+  height:1.429em;
+  margin:-.2em .5em 0 0;
+  background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAUVBMVEUAAAABsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4pJ89bAAAAGnRSTlMA3etU5rMKqwaJW0hPRNAR88qUaybCgWI/MCVqoPAAAAC5SURBVBjTTZBXssMwDAOpZsmOS9or2fsfNBgqynh/RGKIIURzWqqBa6ip2ZcUgJyBkIY2Q1kns2ktMA8tXuzDJXY1EZ96Xr/zv55nJGlHZlOzIh4qNnKzhWIiIIKJwmKV1URGRHNP1cikaooueikD2cSBc3STXeURBVG8jLjdl4rNPvZKT77D3vNTRyS7wc1GpJY1Ov3tnvNxaDA3/2bhy08k9YOcGWe6c+J+PrLjRx60pQYpdWnevgG0mRAe7+n/PQAAAABJRU5ErkJggg==") no-repeat center center;
+  background-size:contain;
+}
+#landing > .header > .login:hover {
+  border:.166em solid #03b4fe;
+  border-radius:2em;
+  padding:0 1em;
+}
 #card h4 {
   color: #01B0FE;
 }
