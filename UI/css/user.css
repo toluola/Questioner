@@ -159,3 +159,26 @@ html, body {margin:0; padding:0;}
 .font {
   text-decoration: none;
 }
+
+.copyright {font-size:.875em; border-top:2px solid #eee; margin:2em 6.8em 0; padding:2em 0; color:#8e9ea9; word-spacing:1.5em;}
+ .copyright:after {content:""; display:block; height:0; overflow:hidden; float:none; clear:both;}
+ .copyright  * {word-spacing:normal;}
+ .copyright a {color:#01affe; text-decoration:none;}
+ .copyright a:hover {color:#3e4e5c;}
+ .copyright .social {float:right; word-spacing:1.5em;}
+ .copyright .social * {word-spacing:normal;}
+ .copyright .social .ico:before {font-family:"ico"; font-size:1.8em;}
+
+#landing > .copyright > .social > .fa:before {
+  display: inline-block;
+  font: normal normal normal 1.8em FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#landing > .footer {
+  display:table;
+  width:100%;
+  padding:0 6em;
+}
