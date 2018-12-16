@@ -102,6 +102,7 @@ p:before {
   top: 300%;
   left: 40%;
   display: block;
+  margin-top: 20px;
   /*transform: translate(-50%, -50%);*/
 }
  .copyright {font-size:.875em; border-top:2px solid #eee; margin:2em 6.8em 0; padding:2em 0; color:#8e9ea9; word-spacing:1.5em;}
@@ -128,10 +129,15 @@ p:before {
 }
 
 #card h4 {
-  color: #99CE45;
+  color: #01B0FE;
 }
 #courses-list {
   display: none;
+}
+.heading {
+  color: #01B0FE;
+  margin-top: 20px;
+  margin-left: 400px;
 }
 
 
@@ -161,10 +167,12 @@ p:before {
 .info-card p,
 .card h4 {
     margin-bottom: 5px;
+    color: #01B0FE
 }
 .info-card .price {
     font-size: 15px;
     margin-top: 10px;
+
 }
 .info-card .price span {
     font-size: 10px;
