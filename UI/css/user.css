@@ -1,0 +1,133 @@
+html, body {margin:0; padding:0;}
+
+#landing, #landing *, #landing :before, #landing :after {
+  position:relative;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  vertical-align:middle;
+  text-overflow:ellipsis;
+  font-family:Montserrat, Arial, Helvetica, Tahoma, Verdana, sans-serif;
+}
+#landing {
+  width:1500px;
+  font-size:16px;
+  padding-top:4.0625em;
+  background:#fff;
+  text-align:center;
+}
+
+#landing {font-size:1.061vw; width:auto;}
+
+#landing > * {text-align:left;}
+#landing .button {
+  display:inline-block;
+  padding:.75em 1.4em;
+  border-radius:2em;
+  font-weight:bold;
+  line-height:normal;
+  text-align:center;
+  text-decoration:none;
+  text-transform:uppercase;
+  background-color:#99ce45;
+  border:.125em solid #99ce45;
+  color:#fff;
+  transition:background .4s, color .4s, border-color .4s;
+}
+#landing .button:hover {background:transparent; color:#99ce45;}
+#landing .button:active {opacity:.5;}
+#landing .button-blue {background:#01b0fe; border-color:#01b0fe;}
+#landing .button-blue:hover {background:transparent; color:#01b0fe;}
+#landing .button-orange {background:#fe8f4f; border-color:#fe8f4f;}
+#landing .button-orange:hover {background:transparent; color:#fe8f4f;}
+
+#landing > .header {
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  height:4.0625em;
+  z-index:100;
+  background:rgba(255,255,255,.9);
+  padding:.9em 1.25em;
+  line-height:2em;
+  text-align:right;
+  border-bottom:1px solid rgba(0,0,0,.1);
+  word-spacing:2.5em;
+}
+
+#landing > .header > * {display:inline-block; word-spacing:normal;}
+#landing > .header > .logo {
+   font-size: 20px;
+  font-weight: bold;
+  color: #01B0FE;
+  text-decoration: none;
+
+}
+#landing > .header > .button {font-size:.75em; border-width:.18em;}
+#landing > .menu {
+  text-align:center;
+  background:#01b0fe;
+  font-size:1.125em;
+  padding:1.278em 0;
+}
+#card h4 {
+  color: #01B0FE;
+}
+
+.heading {
+  color: #01B0FE;
+  margin-top: 20px;
+  margin-left: 400px;
+}
+
+
+#landing > #courses-list > .row {
+    margin-bottom:20px;
+}
+.add-to-cart {
+    margin:10px 0;
+}
+.card {
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    background: white;
+}
+
+#courses-list .row {
+  margin-bottom: 20px;
+}
+@media (min-width: 550px) {
+    .card {
+        text-align: left;
+    }
+}
+.info-card  {
+    padding: 10px 20px;
+}
+.info-card p,
+.card h4 {
+    margin-bottom: 5px;
+    color: #01B0FE
+}
+.info-card .price {
+    font-size: 15px;
+    margin-top: 10px;
+
+}
+.info-card .price span {
+    font-size: 10px;
+}
+.close-form {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-form:hover,
+.close-form:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
