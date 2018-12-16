@@ -101,16 +101,17 @@ p:before {
   position: block;
   top: 300%;
   left: 40%;
+  display: block;
   /*transform: translate(-50%, -50%);*/
 }
-#landing > .copyright {font-size:.875em; border-top:2px solid #eee; margin:2em 6.8em 0; padding:2em 0; color:#8e9ea9; word-spacing:1.5em;}
-#landing > .copyright:after {content:""; display:block; height:0; overflow:hidden; float:none; clear:both;}
-#landing > .copyright > * {word-spacing:normal;}
-#landing > .copyright a {color:#01affe; text-decoration:none;}
-#landing > .copyright a:hover {color:#3e4e5c;}
-#landing > .copyright > .social {float:right; word-spacing:1.5em;}
-#landing > .copyright > .social > * {word-spacing:normal;}
-#landing > .copyright > .social > .ico:before {font-family:"ico"; font-size:1.8em;}
+ .copyright {font-size:.875em; border-top:2px solid #eee; margin:2em 6.8em 0; padding:2em 0; color:#8e9ea9; word-spacing:1.5em;}
+ .copyright:after {content:""; display:block; height:0; overflow:hidden; float:none; clear:both;}
+ .copyright  * {word-spacing:normal;}
+ .copyright a {color:#01affe; text-decoration:none;}
+ .copyright a:hover {color:#3e4e5c;}
+ .copyright .social {float:right; word-spacing:1.5em;}
+ .copyright .social * {word-spacing:normal;}
+ .copyright .social .ico:before {font-family:"ico"; font-size:1.8em;}
 
 #landing > .copyright > .social > .fa:before {
   display: inline-block;
@@ -129,3 +130,59 @@ p:before {
 #card h4 {
   color: #99CE45;
 }
+#courses-list {
+  display: none;
+}
+
+
+#landing > #courses-list > .row {
+    margin-bottom:20px;
+}
+.add-to-cart {
+    margin:10px 0;
+}
+.card {
+    text-align: center;
+    border: 1px solid #e1e1e1;
+    background: white;
+}
+
+#courses-list .row {
+  margin-bottom: 20px;
+}
+@media (min-width: 550px) {
+    .card {
+        text-align: left;
+    }
+}
+.info-card  {
+    padding: 10px 20px;
+}
+.info-card p,
+.card h4 {
+    margin-bottom: 5px;
+}
+.info-card .price {
+    font-size: 15px;
+    margin-top: 10px;
+}
+.info-card .price span {
+    font-size: 10px;
+}
+
+.close-form {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-form:hover,
+.close-form:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+

@@ -40,3 +40,8 @@ function closeForm() {
 function closeFormSign() {
 	document.getElementById("myFormSign").style.display = "none";
 }
+
+document.querySelector(".view").addEventListener("click", event => {
+	document.querySelector("#card").style.display = "none";
+	document.querySelector("#courses-list").style.display = "block";
+})
