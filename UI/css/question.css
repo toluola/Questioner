@@ -5,4 +5,7 @@ html, body {margin:10; padding:0;}
   font-size: 15px;
   margin-left: 5px;
 }
+.post {
+  margin-left: 150px;
+}
 
