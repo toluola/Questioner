@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&subset=latin-ext');
+
+html {
+  position: relative;
+  overflow-x: hidden!important;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  color: #324e63;
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.wrapper {
+  width: 100%;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  padding: 50px 20px;
+  padding-top: 100px
+}
+
+
+.profile-card {
+  width: 30%;
+  min-height: 460px;
+  margin: auto;
+  box-shadow: 0px 8px 60px -10px rgba(13,28,39,0.6);
+  background: #fff;
+  border-radius: 12px;
+  max-width: 700px;
+  position: relative;
+}
+
+    .profile-card-message,
+    .profile-card__overlay {
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: .1s;
+    }
+
+    .profile-card-form {
+      transform: none;
+      transition-delay: .1s;
+    }
+
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    
+  .feature {
+      display:inline;
+      width:23.75em;
+      margin-top:5.125em;
+      padding:0 1.625em;
+      text-align:center;
+      vertical-align:top;
+    }
+
+.picture {
+  margin-top: 20px;
+ margin-left: 100px;
+  max-width:191px; 
+  margin-bottom:2.25em;
+}
+
+.summary {
+  color:#737d85; 
+  font-size:.86em; 
+}
+
+.profile-name-email {
+  margin-top: 20px;
+  margin-left: 145px;
+}
+
+html, body {margin:0; padding:0;}
+
+#landing, #landing *, #landing :before, #landing :after {
+  position:relative;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  vertical-align:middle;
+  text-overflow:ellipsis;
+  font-family:Montserrat, Arial, Helvetica, Tahoma, Verdana, sans-serif;
+}
+#landing {
+  width:1500px;
+  font-size:16px;
+  padding-top:4.0625em;
+  background:#fff;
+  text-align:center;
+}
+
+#landing {font-size:1.061vw; width:auto;}
+
+#landing > * {text-align:left;}
+#landing .button {
+  display:inline-block;
+  padding:.75em 1.4em;
+  border-radius:2em;
+  font-weight:bold;
+  line-height:normal;
+  text-align:center;
+  text-decoration:none;
+  text-transform:uppercase;
+  background-color:#99ce45;
+  border:.125em solid #99ce45;
+  color:#fff;
+  transition:background .4s, color .4s, border-color .4s;
+}
+#landing .button:hover {background:transparent; color:#99ce45;}
+#landing .button:active {opacity:.5;}
+#landing .button-blue {background:#01b0fe; border-color:#01b0fe;}
+#landing .button-blue:hover {background:transparent; color:#01b0fe;}
+#landing .button-orange {background:#fe8f4f; border-color:#fe8f4f;}
+#landing .button-orange:hover {background:transparent; color:#fe8f4f;}
+
+#landing > .header {
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  height:4.0625em;
+  z-index:100;
+  background:rgba(255,255,255,.9);
+  padding:.9em 1.25em;
+  line-height:2em;
+  text-align:right;
+  border-bottom:1px solid rgba(0,0,0,.1);
+  word-spacing:2.5em;
+}
+
+#landing > .header > * {display:inline-block; word-spacing:normal;}
+#landing > .header > .logo {
+   font-size: 20px;
+  font-weight: bold;
+  color: #01B0FE;
+  text-decoration: none;
+
+}
+#landing > .header > .button {font-size:.75em; border-width:.18em;}
+#landing > .menu {
+  text-align:center;
+  background:#01b0fe;
+  font-size:1.125em;
+  padding:1.278em 0;
+}
