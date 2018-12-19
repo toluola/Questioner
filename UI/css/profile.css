@@ -194,15 +194,11 @@ a, a:hover {
   padding:0 6em;
 }
 
-.contain {
-  display: none;
-}
-
 #card h4 {
   color: #01B0FE;
 }
 #courses-list {
-  /*display: none;*/
+  display: none;
 }
 .heading {
   color: #01B0FE;
