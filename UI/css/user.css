@@ -58,6 +58,7 @@ html, body {margin:0; padding:0;}
 
 #landing > .header > * {display:inline-block; word-spacing:normal;}
 #landing > .header > .logo {
+  float: left;
    font-size: 20px;
   font-weight: bold;
   color: #01B0FE;
@@ -102,7 +103,8 @@ html, body {margin:0; padding:0;}
 .heading {
   color: #01B0FE;
   margin-top: 20px;
-  margin-left: 400px;
+  margin-left: 600px;
+  font-size: 30px;
 }
 
 
@@ -111,11 +113,24 @@ html, body {margin:0; padding:0;}
 }
 .add-to-cart {
     margin:10px 0;
+    text-decoration: none;
+    color: #01B0FE;
 }
 .card {
     text-align: center;
     border: 1px solid #e1e1e1;
     background: white;
+    float: left;
+    width: 25%;
+    margin-left: 100px;
+    margin-bottom: 20px;
+}
+
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #e1e1e1;
 }
 
 #courses-list .row {
@@ -129,6 +144,10 @@ html, body {margin:0; padding:0;}
 .info-card  {
     padding: 10px 20px;
 }
+
+.post {
+  border-radius: 5px;
+}
 .info-card p,
 .card h4 {
     margin-bottom: 5px;
@@ -141,6 +160,16 @@ html, body {margin:0; padding:0;}
 }
 .info-card .price span {
     font-size: 10px;
+    float: right;
+}
+
+img {
+  width: 100%; 
+}
+
+.font {
+  float: right;
+  color: #01B0FE;
 }
 .close-form {
     color: #aaa;
@@ -181,4 +210,136 @@ html, body {margin:0; padding:0;}
   display:table;
   width:100%;
   padding:0 6em;
+}
+
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+textarea {
+  width: 100%;
+  height: 38px;
+  padding: 6px 10px;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button {
+  float: right;
+  display:inline-block;
+  padding:.75em 1.4em;
+  /*border-radius:2em;*/
+  font-weight:bold;
+  line-height:normal;
+  text-align:center;
+  text-decoration:none;
+  text-transform:uppercase;
+  background-color:#99ce45;
+  border:.125em solid #99ce45;
+  color:#fff;
+  transition:background .4s, color .4s, border-color .4s;
+}
+
+button:hover {background:transparent; color:#99ce45;}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 10%;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* The Close Button */
+.close {
+    color: #01B0FE;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    color: #99CE45;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+    color: #01B0FE; 
+}
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+.modal {
+  display: none;
+ }
+
+@media only screen and (max-width: 1200px) {
+  .card {
+    width: 90%;
+    margin-left: 17px;
+  }
+
+  .add-to-cart {
+    float: left;
+  }
+
+  .heading {
+    margin-left: 60px;
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  #landing > .header > .logo {
+    font-size: 10px;
+  }
+
+  #landing > .header > .login {
+    font-size: 10px;
+  }
+
+  #landing > .header {
+    height: 25px;
+  }
+
+  .p {
+    float: left;
+  }
 }

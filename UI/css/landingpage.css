@@ -86,6 +86,7 @@ html, body {margin:0; padding:0;}
 
 #landing > .header > * {display:inline-block; word-spacing:normal;}
 #landing > .header > .logo {
+  float: left;
    font-size: 20px;
   font-weight: bold;
   color: #01B0FE;
@@ -240,5 +241,55 @@ html, body {margin:0; padding:0;}
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media only screen and (max-width: 1200px) {
+#landing > .hero {
+  height: 200px; 
+ } 
+
+ #landing > .header > .logo {
+  font-size: 15px;
+ }
+
+ #landing > .button {
+  padding: 0 0;
+ }
+ #landing {
+  font-size: 12px;
+}
+
+}
+
+
+
+input[type="number"],
+input[type="text"],input[type="email"],
+input[type="password"],
+textarea {
+  height: 38px;
+  padding: 6px 10px;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+label {
+   display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="text"]:focus,
+input[type="password"]:focus{
+  border: 1px solid #33c3f0;
+  outline: 0;
 }
 
