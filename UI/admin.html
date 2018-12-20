@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/admin.css">
-	<link rel="stylesheet" href="css/main.css">
 	<title>Admin Page</title>
 </head>
 <body>
@@ -21,21 +20,21 @@
   </div>
 
    <div id='card'>
-        <h4>Create a Meetup</h4>
+        <h3>Create a Meetup</h3>
         <br>
     <form class="form" accept="image/gif,image/jpeg">
         <p type="Topic:"><input class="user-form"></input></p><br><br>
         <p type="Location:"><input class="user-form"></input></p><br><br>
         <p type="Date:"><input class="user-form"></input></p><br><br>
         <p type="Tags:"><input class="user-form"></input></p><br><br>
-        Add image: <input type="file" name="pic" id="pic"><br><br>
-        <button class="button">Create</button>
+        Add image: <input type="file" name="pic" id="pic"><br><br><br>
+        <button class="button create-button">Create</button>
 	</form>
     </div>
 
     </div>
    
-  <div id="courses-list" class="container">
+  <div id="courses-list" class="container clearfix">
         <h2 id="heading" class="heading">All Meetups</h2>
         <hr>
         <div class="row">
@@ -43,7 +42,7 @@
                 <div class="card">
                     <img src="img/course1.jpg" class="course-image u-full-width">
                     <div class="info-card">
-                    	<span class="close-form" onclick="closeFormSign()">&times;</span>
+                    	<span class="close-form">&times;</span>
                         <h4>JAVASCRIPT</h4>
                         <p>Lekki Hall</p>
                         <p class="price">27-6-2019  <span class="u-pull-right ">react,js,</span></p>
@@ -55,7 +54,7 @@
                     <div class="card">
                         <img src="img/course2.jpg" class="course-image u-full-width">
                         <div class="info-card">
-                        	<span class="close-form" onclick="closeFormSign()">&times;</span>
+                        	<span class="close-form">&times;</span>
                             <h4>Ruby</h4>
                             <p>Eko Hotels</p>
                             
@@ -68,7 +67,7 @@
                     <div class="card">
                         <img src="img/course3.jpg" class="course-image u-full-width">
                         <div class="info-card">
-                        	<span class="close-form" onclick="closeFormSign()">&times;</span>
+                        	<span class="close-form">&times;</span>
                             <h4>Learning Shoe making</h4>
                             <p>Charity Hall</p>
                             
@@ -84,7 +83,7 @@
                 <div class="card">
                     <img src="img/course4.jpg" class="course-image u-full-width">
                     <div class="info-card">
-                    	<span class="close-form" onclick="closeFormSign()">&times;</span>
+                    	<span class="close-form">&times;</span>
                         <h4>Data science</h4>
                         <p>Victoria Hall</p>
                        
@@ -97,7 +96,7 @@
                     <div class="card">
                         <img src="img/course5.jpg" class="course-image u-full-width">
                         <div class="info-card">
-                        	<span class="close-form" onclick="closeFormSign()">&times;</span>
+                        	<span class="close-form">&times;</span>
                             <h4>Artificial Inteligence</h4>
                             <p>Ikotun Hall</p>
                             
@@ -110,7 +109,7 @@
                     <div class="card">
                         <img src="img/course1.jpg" class="course-image u-full-width">
                         <div class="info-card">
-                        	<span class="close-form" onclick="closeFormSign()">&times;</span>
+                        	<span class="close-form">&times;</span>
                             <h4>Web Design</h4>
                             <p>Ajah Hall</p>
                            
@@ -121,6 +120,20 @@
             </div>
         </div> <!--.row-->
     </div>
+
+     <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+    </div>
+   <div class="modal-body">
+    <span class="close">&times;</span>
+       <p></p>
+   </div>
+  </div>
+
+</div>
 
     <div class="copyright">
     <span>&copy; 2019 Andela. All rights reserved.</span>

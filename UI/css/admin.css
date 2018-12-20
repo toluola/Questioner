@@ -58,6 +58,7 @@ html, body {margin:0; padding:0;}
 
 #landing > .header > * {display:inline-block; word-spacing:normal;}
 #landing > .header > .logo {
+  float: left;
    font-size: 20px;
   font-weight: bold;
   color: #01B0FE;
@@ -99,10 +100,10 @@ p:before {
 
 #landing > #card {
   position: block;
-  top: 300%;
-  left: 40%;
+  margin-left: 550px;
   display: block;
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 100px;
   /*transform: translate(-50%, -50%);*/
 }
  .copyright {font-size:.875em; border-top:2px solid #eee; margin:2em 6.8em 0; padding:2em 0; color:#8e9ea9; word-spacing:1.5em;}
@@ -128,7 +129,7 @@ p:before {
   padding:0 6em;
 }
 
-#card h4 {
+#card h3 {
   color: #01B0FE;
 }
 #courses-list {
@@ -137,7 +138,8 @@ p:before {
 .heading {
   color: #01B0FE;
   margin-top: 20px;
-  margin-left: 400px;
+  margin-left: 600px;
+  font-size: 30px;
 }
 
 
@@ -151,7 +153,19 @@ p:before {
     text-align: center;
     border: 1px solid #e1e1e1;
     background: white;
+    float: left;
+    width: 25%;
+    margin-left: 100px;
+    margin-bottom: 20px;
 }
+
+hr {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  border-width: 0;
+  border-top: 1px solid #e1e1e1;
+}
+
 
 #courses-list .row {
   margin-bottom: 20px;
@@ -176,6 +190,10 @@ p:before {
 }
 .info-card .price span {
     font-size: 10px;
+    float: right;
+}
+img {
+  width: 100%;
 }
 
 .close-form {
@@ -183,14 +201,129 @@ p:before {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    color: #01B0FE; 
 }
 
 .close-form:hover,
 .close-form:focus {
-    color: black;
+    color: #99CE45;
     text-decoration: none;
     cursor: pointer;
 }
+.container {
+  margin-bottom: 10px;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 10%;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+/* The Close Button */
+.close {
+    color: #01B0FE;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    color: #99CE45;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+    color: #01B0FE; 
+}
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+.clearfix:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+.modal {
+  display: none;
+ }
+
+
+@media only screen and (max-width: 1200px) {
+  #landing > #card {
+    margin-left: 20px;
+    width: 40%;
+  }
+
+  #landing > .header > .button {
+    font-size: 6px;
+  }
+
+  #landing > .header > .logo {
+  font-size: 10px;
+ }
+
+ #card h3 {
+  font-size: 15px;
+ }
+
+ .card {
+  width: 90%;
+  margin-left: 15px;
+ }
+
+ .heading {
+  margin-left: 20px;
+ }
+
+ #landing > .header {
+  height: 25px;
+ }
+
+ .user-form {
+  width: 200px;
+  font-size: 20px;
+ }
+
+ .create {
+  font-size: 10px;
+ }
+}
+
+
 
 
 

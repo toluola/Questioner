@@ -1,13 +1,50 @@
 html, body {margin:10; padding:0;}
 
+.view {
+  display:inline-block;
+  padding:.75em 1.4em;
+  border-radius:2em;
+  font-weight:bold;
+  line-height:normal;
+  text-align:center;
+  text-decoration:none;
+  text-transform:uppercase;
+  background-color:#99ce45;
+  border:.125em solid #99ce45;
+  color:#fff;
+  transition:background .4s, color .4s, border-color .4s;
+}
+
+.view:hover {
+  background:transparent; color:#99ce45;
+}
+
 .font {
   text-decoration: none;
   font-size: 15px;
   margin-left: 5px;
+  color: #01B0FE;
+}
+
+.url {
+  color: #01B0FE;
 }
 .post {
   margin-left: 150px;
+  padding:.75em 1.4em;
+  border-radius: 5px;
+  font-weight:bold;
+  line-height:normal;
+  text-align:center;
+  text-decoration:none;
+  text-transform:uppercase;
+  background-color:#99ce45;
+  border:.125em solid #99ce45;
+  color:#fff;
+  transition:background .4s, color .4s, border-color .4s;
 }
+
+.post:hover {background:transparent; color:#99ce45;}
 
 #comments {
 	 margin-left: 550px;
@@ -15,8 +52,9 @@ html, body {margin:10; padding:0;}
 
 .comments-title {
 	margin-top: 90px;
-	margin-left: 480px;
+	margin-left: 600px;
 	color: #01B0FE;
+  font-size: 20px;
 }
 
 #landing > .header {
@@ -36,6 +74,7 @@ html, body {margin:10; padding:0;}
 
 #landing > .header > * {display:inline-block; word-spacing:normal;}
 #landing > .header > .logo {
+  float: left;
    font-size: 20px;
   font-weight: bold;
   color: #01B0FE;
@@ -73,7 +112,43 @@ html, body {margin:10; padding:0;}
   padding:0 6em;
 }
 
-i {
-	color: #01B0FE;
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #99CE45; 
 }
 
+textarea {
+  width: 30%;
+  height: 38px;
+  padding: 6px 10px;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+li {
+  margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 1200px) {
+  #comments {
+    margin-left: 10px;
+  }
+.comments-title {
+  margin-left: 10px;
+}
+.post {
+  margin-left: 95px;
+  font-size: 10px;
+}
+textarea {
+  width: 50%
+}
+}
