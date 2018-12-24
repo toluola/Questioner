@@ -280,6 +280,21 @@ button:hover {background:transparent; color:#99ce45;}
     color: #99CE45;
 }
 
+.close2 {
+    color: #99CE45;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close2:hover,
+.close2:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    color: #01B0FE;
+}
+
 .modal-header {
     padding: 2px 16px;
     background-color: #5cb85c;
@@ -307,10 +322,51 @@ button:hover {background:transparent; color:#99ce45;}
     animation-duration: 0.4s;
 }
 
-.modal {
-  display: none;
- }
+.modal-header2 {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
 
+.modal-body2 {
+    padding: 2px 16px;
+    color: #01B0FE;
+    height: 40px; 
+}
+.modal-footer2 {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.but {
+ float: left;
+ margin-left: 400px;
+}
+.modal-content2 {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+.modal2 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 10%;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 @media only screen and (max-width: 1200px) {
   .card {
     width: 90%;
@@ -341,5 +397,9 @@ button:hover {background:transparent; color:#99ce45;}
 
   .p {
     float: left;
+  }
+
+  .but {
+    margin-left: 0;
   }
 }
