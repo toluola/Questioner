@@ -207,6 +207,10 @@ a, a:hover {
   margin-left: 600px;
 }
 
+.trending {
+  color: #01B0FE;
+}
+
 
 #landing > #courses-list > .row {
     margin-bottom:20px;
