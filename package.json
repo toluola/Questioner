@@ -1,0 +1,38 @@
+{
+  "name": "questioner",
+  "version": "1.0.0",
+  "description": "A meetup App",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toluola/Questioner.git"
+  },
+  "author": "Tolu' Olaniyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toluola/Questioner/issues"
+  },
+  "homepage": "https://github.com/toluola/Questioner#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "eslint": "^5.11.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "express": "^4.16.4"
+  }
+}
