@@ -49,6 +49,23 @@ class meetupsController {
 			});
 		}
 	}
+
+	static getEachMeetup(req, res) {
+		const id  = req.params.Id;
+		const data = meetups.filter(user => user.id === id)[0];
+		if (data) {
+			res.status(200).json({
+				message: "Meetup fetched successfully",
+				status: 200,
+				Meetup: data
+			});
+		} else {
+			res.status(404).json({
+				message: "Meetup not found",
+				status: 404
+			});
+		}
+	}
 }
 
 export default meetupsController;
