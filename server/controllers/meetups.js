@@ -3,8 +3,24 @@ import _ from "underscore";
 const meetups = [];
 
 class meetupsController {
+	static getMeetups(req, res) {
+		if (meetups.length > 0) {
+			res.status(200).json({
+				message: "Meetups fetched successfully",
+				status: 200,
+				meetups
+			});
+		} else {
+			res.status(404).json({
+				message: "No meetup found",
+				status: 404
+			});
+		}
+	}
+
 	static saveMeetup(req, res) {
 		const meetup = {
+			meetup_info: {
 				id: req.body.id,
 				createdOn: req.body.createdOn,
 				location: req.body.location,
@@ -12,6 +28,7 @@ class meetupsController {
 				topic: req.body.topic,
 				happeningOn: req.body.happeningOn,
 				Tags: req.body.Tags
+			}
 		};
 		const idSave = req.body.id;
 		const newId = meetups.filter(user => user.id === idSave)[0];
