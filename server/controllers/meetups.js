@@ -1,6 +1,7 @@
 import _ from "underscore";
 
 const meetups = [];
+const upcomings = [];
 
 class meetupsController {
 	static getMeetups(req, res) {
@@ -63,6 +64,34 @@ class meetupsController {
 			res.status(404).json({
 				message: "Meetup not found",
 				status: 404
+			});
+		}
+	}
+
+	static saveResponse(req, res) {
+		const upcoming = {
+			response_details: {
+				meetup: req.params.id,
+				topic: req.body.topic,
+				status: req.body.status
+			}
+		};
+		const idSave = req.params.id;
+		const newId = upcomings.filter(user => user.meetup === idSave)[0];
+
+		if (newId) {
+			res.status(400).json({
+				status: 400,
+				message: "A response already exist for this meetup"
+			});
+		} else {
+			const added = _.each(upcoming, item => {
+				upcomings.push(item);
+			});
+			res.status(201).json({
+				message: "Your Response has been Recorded",
+				status: 201,
+				data: upcoming
 			});
 		}
 	}
