@@ -3,6 +3,7 @@ import path from "path";
 import bodyParser from "body-parser";
 import cors from 'cors';
 import meetupRoutes from './routes/meetups';
+import upcomingRoutes from './routes/upcoming';
 
 
 const PORT = 4000;
@@ -13,7 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use("/api/v1/meetups/upcomings", upcomingRoutes);
 app.use("/api/v1/meetups", meetupRoutes);
+
 
 app.use((req, res, next) => {
 	const error = new Error("Invalid URL");
