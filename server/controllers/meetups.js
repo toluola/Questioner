@@ -104,8 +104,6 @@ class meetupsController {
 				newUpcoming.push(item);
 			});
 
-			// console.log(addedUpcoming);
-
 			res.status(201).json({
 				message: "Your Response has been Recorded",
 				status: 201,
