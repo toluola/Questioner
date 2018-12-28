@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import cors from 'cors';
 import meetupRoutes from './routes/meetups';
 import upcomingRoutes from './routes/upcoming';
+import questionRoutes from './routes/question';
 
 
 const PORT = 4000;
@@ -16,6 +17,8 @@ app.use(cors());
 
 app.use("/api/v1/meetups/upcomings", upcomingRoutes);
 app.use("/api/v1/meetups", meetupRoutes);
+app.use("/api/v1/questions", questionRoutes);
+
 
 
 app.use((req, res, next) => {
