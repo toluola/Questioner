@@ -23,7 +23,7 @@ class questionsController {
 				title: req.body.title,
 				body: req.body.body
 			}
-		}
+		};
 
 		const idSave = req.body.id;
 		const newId = questions.filter(user => user.id === idSave)[0];
@@ -43,6 +43,27 @@ class questionsController {
 				createdQuestion: questionTwo
 			});
 		}
+	}
+
+	static questionUpvote(req, res) {
+		const idSave = req.params.id;
+		const newId = questions.filter(user => user.id === idSave)[0];
+
+		const votes = {
+			question_info: {
+				id: newId.id,
+				meetup: newId.meetup,
+				title: newId.title,
+				body: newId.body,
+				votes: newId.votes + 1
+			}
+		};
+
+		res.status(201).json({
+			message: "Question successfully upvoted",
+			status: 201,
+			Data: votes
+		});
 	}
 }
 
