@@ -8,4 +8,5 @@ router.post("/:id/rsvps", meetupsController.saveResponse);
 router.get("/", meetupsController.getMeetups);
 router.get("/:Id", meetupsController.getEachMeetup);
 
+
 export default router;
