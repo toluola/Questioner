@@ -36,6 +36,8 @@ app.use((error, req, res, next) => {
 	next();
 });
 
-app.listen(PORT, () => console.log(`Running on localhost:${PORT}`));
+if (!module.parent) {
+	app.listen(PORT, () => console.log(`Running on localhost:${PORT}`));
+}
 
 export default app;
