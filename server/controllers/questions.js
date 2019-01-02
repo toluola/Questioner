@@ -46,8 +46,9 @@ class questionsController {
 	}
 
 	static questionUpvote(req, res) {
-		const idSave = req.params.id;
-		const newId = questions.filter(user => user.id === idSave)[0];
+		const i = req.params.id;
+		const id = parseInt(i, 10);
+		const newId = questions.filter(user => user.id === id)[0];
 
 		const votes = {
 			question_info: {
@@ -67,8 +68,9 @@ class questionsController {
 	}
 
 	static questionDownvote(req, res) {
-		const idSave = req.params.id;
-		const newId = questions.filter(user => user.id === idSave)[0];
+		const i = req.params.id;
+		const id = parseInt(i, 10);
+		const newId = questions.filter(user => user.id === id)[0];
 
 		const votes = {
 			question_info: {
@@ -81,7 +83,7 @@ class questionsController {
 		};
 
 		res.status(201).json({
-			message: "Question successfully upvoted",
+			message: "Question successfully downvoted",
 			status: 201,
 			Data: votes
 		});

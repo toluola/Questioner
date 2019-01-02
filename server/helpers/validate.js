@@ -83,6 +83,59 @@ class Validate {
 			});
 		}
 	}
+
+	static validateQuestion(req, res, next){
+		const number = req.body.id;
+		const created = req.body.createdOn;
+		const create = req.body.createdBy;
+		const top = req.body.title;
+		const reqs = req.body.meetup;
+		const bod = req.body.body;
+		const vot = req.body.votes;
+
+		if (number !== parseInt(number, 10)) {
+			return res.status(400).json({
+				status: 400,
+				message: "The id you Entered should be a Number"
+			});
+		}
+
+		if (create !== parseInt(create, 10)) {
+			return res.status(400).json({
+				status: 400,
+				message: "The createBy id you Entered should be a Number"
+			});
+		}
+
+		if (reqs !== parseInt(reqs, 10)) {
+			return res.status(400).json({
+				status: 400,
+				message: "The meetup id you Entered should be a Number"
+			});
+		}
+
+		if (vot !== parseInt(vot, 10)) {
+			return res.status(400).json({
+				status: 400,
+				message: "The votes you Entered should be a Number"
+			});
+		}
+
+		if (top === "") {
+			return res.status(400).json({
+				status: 400,
+				message: "The title body can not be empty"
+			});
+		}
+
+		if (bod === "") {
+			return res.status(400).json({
+				status: 400,
+				message: "The title body can not be empty"
+			});
+		}
+		next();
+	}
 }
 
 export default Validate;

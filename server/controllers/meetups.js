@@ -28,7 +28,7 @@ class meetupsController {
 				images: req.body.images,
 				topic: req.body.topic,
 				happeningOn: req.body.happeningOn,
-				Tags: req.body.Tags
+				tags: req.body.tags
 			}
 		};
 		const idSave = req.body.id;
@@ -52,17 +52,18 @@ class meetupsController {
 	}
 
 	static getEachMeetup(req, res) {
-		const id = req.params.Id;
+		const i = req.params.Id;
+		const id = parseInt(i, 10);
 		const data = meetups.filter(user => user.id === id)[0];
 		if (data) {
 			res.status(200).json({
 				message: "Meetup fetched successfully",
 				status: 200,
-				Meetup: data
+				meetup: data
 			});
 		} else {
 			res.status(404).json({
-				message: "Meetup not found",
+				message: "Meetunot found",
 				status: 404
 			});
 		}
@@ -117,8 +118,6 @@ class meetupsController {
 			const upcomingData = newUpcoming.filter(
 				user => user.status === "yes"
 			);
-
-			console.log(upcomingData);
 			res.status(200).json({
 				message: "Upcoming Meetups fetched successfully",
 				status: 200,
