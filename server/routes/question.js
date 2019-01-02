@@ -4,7 +4,7 @@ import Validate from "../helpers/validate";
 
 const router = express.Router();
 
-router.post("/", Validate.validateMeetups, questionsController.saveQuestion);
+router.post("/", Validate.validateQuestion, questionsController.saveQuestion);
 router.patch("/:id/upvote", questionsController.questionUpvote);
 router.patch("/:id/downvote", questionsController.questionDownvote);
 
