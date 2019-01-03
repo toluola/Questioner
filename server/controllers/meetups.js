@@ -63,7 +63,7 @@ class meetupsController {
 			});
 		} else {
 			res.status(404).json({
-				message: "Meetunot found",
+				message: "Meetup not found",
 				status: 404
 			});
 		}
