@@ -2,10 +2,13 @@ import express from "express";
 import path from "path";
 import bodyParser from "body-parser";
 import cors from 'cors';
+import dotenv from "dotenv";
 import meetupRoutes from './routes/meetups';
 import upcomingRoutes from './routes/upcoming';
 import questionRoutes from './routes/question';
 
+
+dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 
