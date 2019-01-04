@@ -7,7 +7,7 @@ import upcomingRoutes from './routes/upcoming';
 import questionRoutes from './routes/question';
 
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
 const app = express();
 
@@ -37,7 +37,7 @@ app.use((error, req, res, next) => {
 });
 
 
-	app.listen(PORT, () => console.log(`Running on localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Running on localhost:${PORT}`));
 
 
 export default app;
