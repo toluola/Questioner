@@ -140,14 +140,14 @@ html, body {margin:0; padding:0;}
 #landing > .form-signup {
     display: none;
     position: fixed;
-    bottom: 0;
-    right: 15px;
+    bottom: 50px;
+    right: 500px;
     border: 3px solid #f1f1f1;
     z-index: 2;
     background: white;
-    border-radius: 2px;
+    border-radius: 10px;
     height: 500px;
-    width: 400px;
+    width: 300px;
 }
 
 .field {
@@ -262,6 +262,12 @@ html, body {margin:0; padding:0;}
 
 #landing > .form-popup {
   bottom: 300px;
+  right: 10px;
+  width: 300px;
+}
+
+#landing > .form-signup {
+  bottom: 100px;
   right: 10px;
   width: 300px;
 }
