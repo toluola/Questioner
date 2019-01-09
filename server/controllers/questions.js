@@ -3,7 +3,7 @@ import _ from "underscore";
 const questions = [];
 
 class questionsController {
-	static saveQuestion(req, res) {
+	static createQuestion(req, res) {
 		const question = {
 			question_info: {
 				id: req.body.id,

@@ -19,7 +19,7 @@ class meetupsController {
 		}
 	}
 
-	static saveMeetup(req, res) {
+	static createMeetup(req, res) {
 		const meetup = {
 			meetup_info: {
 				id: req.body.id,
