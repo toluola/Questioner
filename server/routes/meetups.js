@@ -9,7 +9,7 @@ router.post(
 	"/",
 	Authenticate.checkAdmin,
 	Validate.validateMeetups,
-	meetupsController.saveMeetup
+	meetupsController.createMeetup
 );
 router.post(
 	"/:id/rsvps",
