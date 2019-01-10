@@ -5,3 +5,4 @@ yarn-error.log
 .coveralls.yml
 .nyc_output
 .package-lock.json
+dist
