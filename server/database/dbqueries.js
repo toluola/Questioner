@@ -8,12 +8,21 @@ const Migration = {
       console.log("Creating table questions");
       await pool.query(`drop table if exists questions; create table if not exists  questions(
         id serial not null constraint questions_pkey primary key,
-        created_by integer not null,
-        meetup integer not null,
+        created_by integer REFERENCES profiles(id) ON DELETE CASCADE,
+        meetup_id integer REFERENCES meetups(id) ON DELETE CASCADE,
         title text,
         body text,
         votes integer not null,
         created_on timestamp default now() not null);
+    `);
+
+    console.log("Creating table upcomings");
+      await pool.query(`drop table if exists questions; create table if not exists  questions(
+        id serial not null,
+        user_id integer REFERENCES profiles(id) ON DELETE CASCADE,
+        meetup_id integer REFERENCES meetups(id) ON DELETE CASCADE,
+        response text not null,
+        PRIMARY KEY (user_id, meetup_id)
     `);
 
       console.log("Creating table profiles");
