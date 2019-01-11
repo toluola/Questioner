@@ -45,6 +45,20 @@ class questionsController {
 		}
 	}
 
+	static getQuestions(req, res) {
+		if (questions.length > 0) {
+			res.status(200).json({
+				message: "Questions fetched successfully",
+				status: 200,
+				questions
+			});
+		} else {
+			res.status(404).json({
+				status: 404
+			});
+		}
+	}
+
 	static questionUpvote(req, res) {
 		const i = req.params.id;
 		const id = parseInt(i, 10);

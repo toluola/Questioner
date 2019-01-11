@@ -15,6 +15,17 @@ const meet = {
 	isAdmin: true
 };
 
+const meetError = {
+	id: "",
+	createdOn: "12-02-2016",
+	location: "the",
+	images: ["javascript.png", "program.jpg"],
+	topic: "fewfw",
+	happeningOn: "30-01-2019",
+	tags: ["programmer", "live"],
+	isAdmin: true
+};
+
 const status = {
 	status: "yes",
 	createdOn: "12-02-2016",
@@ -266,6 +277,65 @@ describe("downvote Question", () => {
 				expect(res.body)
 					.to.have.property("status")
 					.eql(201);
+				done(err);
+			});
+	});
+});
+
+describe("Get a single question endpoint", () => {
+	it("should fetch all question", done => {
+		chai.request(app)
+			.get("/api/v1/questions")
+			.end((err, res) => {
+				expect(res).to.have.status(200);
+				expect(res.body.questions).to.be.an("array");
+				expect(res.body.questions[0]).to.have.property("id");
+				expect(res.body.questions[0]).to.have.property("createdOn");
+				expect(res.body.questions[0]).to.have.property("createdBy");
+				expect(res.body.questions[0]).to.have.property("title");
+				expect(res.body.questions[0]).to.have.property("meetup");
+				expect(res.body.questions[0]).to.have.property("body");
+				expect(res.body.questions[0]).to.have.property("votes");
+				expect(res.body)
+					.to.have.property("message")
+					.eql("Questions fetched successfully");
+				expect(res.body)
+					.to.have.property("status")
+					.eql(200);
+				done(err);
+			});
+	});
+});
+
+describe(" error upvote Question", () => {
+	it("should return error creating meetup", done => {
+		chai.request(app)
+			.post("/api/v1/meetups")
+			.send(meetError)
+			.end((err, res) => {
+				expect(res.body)
+					.to.have.property("message")
+					.eql("The id you Entered should be a Number");
+				expect(res.body)
+					.to.have.property("status")
+					.eql(400);
+				done(err);
+			});
+	});
+});
+
+describe(" error upvote Question", () => {
+	it("should return error creating meetup", done => {
+		chai.request(app)
+			.post("/api/v1/meetups")
+			.send(meet)
+			.end((err, res) => {
+				expect(res.body)
+					.to.have.property("message")
+					.eql("The Id '1' you Entered already exist");
+				expect(res.body)
+					.to.have.property("status")
+					.eql(400);
 				done(err);
 			});
 	});
