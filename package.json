@@ -24,6 +24,10 @@
   "nyc": {
     "exclude": [
       "UI/**.js",
+      "**/database/**",
+      "**/helpers/**",
+      "**/controllers/**",
+      "**/routes/**",
       "**/**.spec.js"
     ]
   },
@@ -53,7 +57,7 @@
     "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.18.9",
     "nyc": "^13.1.0",
-    "pg": "^7.7.1",
+    "pg": "^7.8.0",
     "prettier": "^1.15.3",
     "underscore": "^1.9.1"
   }
