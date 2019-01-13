@@ -12,12 +12,18 @@ router.post(
 	meetupsController.createMeetup
 );
 router.post(
-	"/:id/rsvps",
+	"/:meetup_id/rsvps",
 	Validate.validateRes,
-	Validate.validateRespond,
-	meetupsController.saveResponse
+	meetupsController.createMeetupResponse
 );
+
+router.get(
+	"/upcomings",
+	// Validate.validateUpcomings,
+	meetupsController.getUpcomingMeetups
+);
+router.delete("/:id", meetupsController.deleteMeetup);
 router.get("/", meetupsController.getMeetups);
-router.get("/:Id", meetupsController.getEachMeetup);
+router.get("/:id", meetupsController.getEachMeetup);
 
 export default router;

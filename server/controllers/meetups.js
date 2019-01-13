@@ -1,135 +1,174 @@
-import _ from "underscore";
-
-const meetups = [];
-const upcomings = [];
-const newUpcoming = [];
+import dbConfig from "../database/dbSetup";
+import validation from "../helpers/helpers";
 
 class meetupsController {
-	static getMeetups(req, res) {
-		if (meetups.length > 0) {
-			res.status(200).json({
-				message: "Meetups fetched successfully",
-				status: 200,
-				meetups
-			});
-		} else {
-			res.status(404).json({
-				status: 404
-			});
-		}
-	}
+	static getMeetups(req, resp, next) {
+		dbConfig.query(
+			"SELECT * FROM meetups where status = $1",
+			["active"],
+			(err, res) => {
+				if (err) {
+					return next(err);
+				}
 
-	static createMeetup(req, res) {
-		const meetup = {
-			meetup_info: {
-				id: req.body.id,
-				createdOn: req.body.createdOn,
-				location: req.body.location,
-				images: req.body.images,
-				topic: req.body.topic,
-				happeningOn: req.body.happeningOn,
-				tags: req.body.tags
+				return resp.status(200).json({
+					status: 200,
+					meetups: res.rows,
+					message: "Meetups Fetched Successfully"
+				});
 			}
-		};
-		const idSave = req.body.id;
-		const newId = meetups.filter(user => user.id === idSave)[0];
-
-		if (newId) {
-			res.status(400).json({
-				status: 400,
-				message: `The Id '${idSave}' you Entered already exist`
-			});
-		} else {
-			const added = _.each(meetup, item => {
-				meetups.push(item);
-			});
-			res.status(201).json({
-				message: "Meetup added successfully",
-				status: 201,
-				createdMeetup: meetup
-			});
-		}
+		);
 	}
 
-	static getEachMeetup(req, res) {
-		const i = req.params.Id;
-		const id = parseInt(i, 10);
-		const data = meetups.filter(user => user.id === id)[0];
-		if (data) {
-			res.status(200).json({
-				message: "Meetup fetched successfully",
-				status: 200,
-				meetup: data
-			});
-		} else {
-			res.status(404).json({
-				message: "Meetup not found",
-				status: 404
+	static createMeetup(req, resp, next) {
+		const validateBody = validation.validateMeetupRequest(req.body);
+		if (validateBody) {
+			return resp.status(400).json({
+				message: validateBody,
+				status: "Validation error"
 			});
 		}
-	}
 
-	static saveResponse(req, res) {
-		const upcoming = {
-			response_details: {
-				meetup: req.params.id,
-				topic: req.body.topic,
-				status: req.body.status
-			}
+		const meet = {
+			location: req.body.location,
+			images: req.body.images,
+			topic: req.body.topic,
+			happening_on: req.body.happening_on,
+			tags: req.body.tags
 		};
 
-		const mainUpcoming = {
-			response_details: {
-				id: req.params.id,
-				topic: req.body.topic,
-				status: req.body.status,
-				location: req.body.location,
-				happeningOn: req.body.happeningOn,
-				tags: req.body.tags
+		const { location, images, topic, happening_on, tags } = meet;
+		dbConfig.query(
+			"INSERT INTO meetups (location, images, topic, happening_on, tags) VALUES ($1,$2,$3,$4,$5) RETURNING *",
+			[location, images, topic, happening_on, tags],
+			(err, res) => {
+				if (err) {
+					return next(err);
+				}
+
+				return resp.status(201).json({
+					status: 201,
+					meetups: res.rows[0],
+					message: "Meetup created Successfully"
+				});
 			}
+		);
+	}
+
+	static getEachMeetup(req, resp, next) {
+		if (!validation.isNumber(req.params.id)) {
+			return resp.status(400).json({
+				message: "Please specify a number in the parameters list"
+			});
+		}
+
+		dbConfig.query(
+			"SELECT * FROM meetups WHERE id = $1 AND status = $2",
+			[req.params.id, "active"],
+			(err, res) => {
+				if (err) {
+					return next(err);
+				}
+				if (res.rows.length > 0) {
+					return resp.status(200).json({
+						meetup: res.rows[0],
+						message: "Meetup fetched successfully"
+					});
+				}
+
+				return resp.status(404).json({ message: "Meetup not found" });
+			}
+		);
+	}
+
+	static createMeetupResponse(req, resp, next) {
+		const validateBody = validation.validateResponseRequest(req.body);
+		if (validateBody) {
+			return resp.status(400).json({
+				message: validateBody,
+				status: "Validation error"
+			});
+		}
+
+		if (!validation.isNumber(req.params.meetup_id)) {
+			return resp.status(400).json({
+				message: "Please specify a number in the parameters list"
+			});
+		}
+
+		const responses = {
+			meetup_id: req.params.meetup_id,
+			user_id: req.body.user_id,
+			response: req.body.response
 		};
-		const idSave = req.params.id;
-		const newId = upcomings.filter(user => user.meetup === idSave)[0];
 
-		if (newId) {
-			res.status(400).json({
-				status: 400,
-				message: "A response already exist for this meetup"
-			});
-		} else {
-			const added = _.each(upcoming, item => {
-				upcomings.push(item);
-			});
+		const { meetup_id, user_id, response } = responses;
+		dbConfig.query(
+			"INSERT INTO upcomings (meetup_id, user_id, response) VALUES ($1,$2,$3) RETURNING *",
+			[meetup_id, user_id, response],
+			(err, res) => {
+				if (err) {
+					return next(err);
+				}
 
-			const addedUpcoming = _.each(mainUpcoming, item => {
-				newUpcoming.push(item);
-			});
-
-			res.status(201).json({
-				message: "Your Response has been Recorded",
-				status: 201,
-				data: upcoming
-			});
-		}
+				return resp.status(201).json({
+					status: 201,
+					details: res.rows[0],
+					message: "Your Responses are Successfully Recorded"
+				});
+			}
+		);
 	}
 
-	static getUpcoming(req, res) {
-		if (upcomings.length > 0) {
-			const upcomingData = newUpcoming.filter(
-				user => user.status === "yes"
-			);
-			res.status(200).json({
-				message: "Upcoming Meetups fetched successfully",
-				status: 200,
-				upcoming_meetups: upcomingData
-			});
-		} else {
-			res.status(404).json({
-				message: "No meetup found",
-				status: 404
-			});
-		}
+	static getUpcomingMeetups(req, resp, next) {
+		dbConfig.query(
+			"SELECT * FROM upcomings WHERE response = $1",
+			["yes"],
+			(err, res) => {
+				if (err) {
+					return next(err);
+				}
+				if (res.rows.length > 0) {
+					return resp.status(200).json({
+						meetup: res.rows[0],
+						message: "Upcoming Meetups fetched successfully"
+					});
+				}
+
+				return resp
+					.status(404)
+					.json({ message: "No Upcoming Meetup not found" });
+			}
+		);
 	}
+
+	static deleteMeetup(req, resp, next) {
+    if (!validation.isNumber(req.params.id))
+      return resp
+        .status(400)
+        .json({ message: "Please specify a number in the parameters list" });
+
+    const id = parseInt(req.params.id, 10);
+
+    dbConfig.query(
+      "UPDATE meetups SET status = $1 WHERE id = $2 RETURNING *",
+      ["deleted", id],
+      (err, res) => {
+        if (err) {
+          return next(err);
+        }
+
+        if (res && res.rows.length > 0) {
+          return resp.status(200).json({
+            product: res.rows[0],
+            message: "Meetup deleted successfully"
+          });
+        }
+        return resp.status(404).json({ message: "Meetup not found" });
+      }
+    );
+  }
+
 }
 
 export default meetupsController;

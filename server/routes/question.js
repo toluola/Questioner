@@ -6,8 +6,7 @@ const router = express.Router();
 
 router.post("/", Validate.validateQuestion, questionsController.createQuestion);
 router.get("/", questionsController.getQuestions);
-router.patch("/:id/upvote", questionsController.questionUpvote);
-router.patch("/:id/downvote", questionsController.questionDownvote);
-
+router.patch("/:question_id/upvote", questionsController.upvoteQuestion);
+router.patch("/:question_id/downvote", questionsController.downvoteQuestion);
 
 export default router;
