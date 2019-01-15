@@ -122,8 +122,8 @@ class meetupsController {
 
 	static getUpcomingMeetups(req, resp, next) {
 		dbConfig.query(
-			"SELECT * FROM upcomings WHERE response = $1",
-			["yes"],
+			"SELECT * FROM upcomings WHERE response = $1 AND user_id = $2",
+			["yes", req.body.user_id],
 			(err, res) => {
 				if (err) {
 					return next(err);

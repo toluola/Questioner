@@ -1,4 +1,15 @@
+import bcrypt from "bcrypt";
+
 class helpers {
+
+  static hashPassword(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+  }
+
+  static comparePassword(hashPassword, password) {
+    return bcrypt.compareSync(password, hashPassword);
+  }
+
   static isNumber(number) {
     return !isNaN(number);
   }
