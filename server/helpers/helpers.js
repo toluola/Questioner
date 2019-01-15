@@ -1,4 +1,15 @@
+import bcrypt from "bcrypt";
+
 class helpers {
+
+  static hashPassword(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+  }
+
+  static comparePassword(hashPassword, password) {
+    return bcrypt.compareSync(password, hashPassword);
+  }
+
   static isNumber(number) {
     return !isNaN(number);
   }
@@ -97,6 +108,15 @@ class helpers {
       return errors;
     }
     return false;
+  }
+
+  static validateSignup (req, resp, next) {
+    req.checkBody("email").isEmail();
+		const errors = req.validationErrors();
+		if (errors) {
+			return resp.status(422).json({ errors });
+		}
+      next();
   }
 }
 
