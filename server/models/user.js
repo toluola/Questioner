@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import profiles from "../database/dbSetup";
 import helpers from "../helpers/helpers";
 
+const { JWT_SECRET } = process.env
+
 
 class Usermodel {
     constructor({ firstname, lastname, email, password }) {
@@ -32,26 +34,20 @@ async login(){
         authQuery.rows[0].password
     ); 
     if (isCorrectPassword) {
-        this.token = await this.generateToken();
-        return this.strip();
+        authQuery.rows[0].password = null;
+        const payload = {
+            profile: authQuery.rows[0]
+        };
+
+        const token = jwt.sign(payload, JWT_SECRET, {
+            expiresIn: "24h"
+        });
+
+        return token;
     }
     throw new Error("invalid credentials");
-}
+ }
 
-async generateToken() {
-    return jwt.sign(
-        {
-            exp: (Math.floor(Date.now() / 1000) + 60 * 60) * 24 * 7,
-            data: this.strip()
-        },
-        process.env.JWT_SECRET
-    );
-}
-
-strip() {
-    const { password, hashPassword, ...noPassword } = this;
-    return noPassword;
-}
 }
 
 export default Usermodel;

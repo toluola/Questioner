@@ -2,7 +2,6 @@
 import Usermodel from "../models/user";
 
 
-const { JWT_SECRET } = process.env;
 
 class userController {
     static async signup(req, resp) {
@@ -35,10 +34,10 @@ class userController {
                 const { email, password } = req.body;
                 const newLogin = new Usermodel({ email, password });
                 const createdLogin = await newLogin.login();
-                resp.status(201).json({
-                    status: 201,
-					profile: createdLogin,
-                    message: "User Logged In Successfully"
+                return resp.status(201).json({
+                       status: 201,
+					   token: { createdLogin },
+                       message: "User Logged In Successfully"
                 })   
             } catch (error) {
                 return resp.status(403).json({
