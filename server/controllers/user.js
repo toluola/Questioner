@@ -1,6 +1,6 @@
-import Usermodel from "../models/user";
+import Usermodel from "../models/User";
 
-class userController {
+class UserController {
   static async signup(req, resp) {
     try {
       const { firstname, lastname, email, password } = req.body;
@@ -16,13 +16,13 @@ class userController {
         error.message ===
         'duplicate key value violates unique constraint "profiles_email_uindex"'
       ) {
-        return resp.status(403).json({
-          status: "403",
+        return resp.status(409).json({
+          status: "409",
           message: "Email Already exist. Thanks"
         });
       }
-      return resp.status(403).json({
-        status: 403,
+      return resp.status(500).json({
+        status: 500,
         message: "Registration failed. Try later",
         error: error.message
       });
@@ -49,4 +49,4 @@ class userController {
   }
 }
 
-export default userController;
+export default UserController;
