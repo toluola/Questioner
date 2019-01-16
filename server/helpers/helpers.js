@@ -109,6 +109,24 @@ class helpers {
     }
     return false;
   }
+
+  static validateSignup (req, resp, next) {
+    req.checkBody("email").isEmail();
+		const errors = req.validationErrors();
+		if (errors) {
+			return resp.status(422).json({ errors });
+		}
+      next();
+  }
+
+  static validateLogin (req, resp, next) {
+    req.checkBody("email").isEmail();
+		const errors = req.validationErrors();
+		if (errors) {
+			return resp.status(422).json({ errors });
+		}
+      next();
+  }
 }
 
 export default helpers;
