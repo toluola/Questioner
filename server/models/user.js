@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import profiles from "../database/dbSetup";
@@ -25,6 +24,7 @@ async Signup(){
 
     }
 
+
 async login(){
     const authQuery = await profiles.query("SELECT * FROM profiles WHERE email = $1",
     [this.email]);
@@ -47,7 +47,6 @@ async login(){
     }
     throw new Error("invalid credentials");
  }
-
 }
 
 export default Usermodel;
