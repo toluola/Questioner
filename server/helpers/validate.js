@@ -170,6 +170,18 @@ class Validate {
 
 		next();
 	}
+
+	static validateSignup(req, res, next) {
+		req.checkBody("email").isEmail();
+		req.checkBody("firstname").isLength({ min: 1 });
+		req.checkBody("lastname").isLength({ min: 1 });
+		req.checkBody(["password"]).isLength({ min: 5 });
+		const errors = req.validationErrors();
+		if (errors) {
+			return res.status(422).json({ errors });
+		} 
+			next();
+	}
 }
 
 export default Validate;

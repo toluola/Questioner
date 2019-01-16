@@ -1,13 +1,15 @@
 import express from "express";
 import questionsController from "../controllers/questions";
+import authRoute from "../helpers/authenticate";
 import Validate from "../helpers/validate";
 
 const router = express.Router();
 
 router.post(
-	"/",
-	Validate.validateComment,
-	questionsController.createQuestionComment
+  "/",
+  authRoute.verifyToken,
+  Validate.validateComment,
+  questionsController.createQuestionComment
 );
 
 export default router;

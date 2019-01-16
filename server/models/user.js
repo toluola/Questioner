@@ -1,10 +1,10 @@
+
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import profiles from "../database/dbSetup";
 import helpers from "../helpers/helpers";
 
 const { JWT_SECRET } = process.env
-
 class Usermodel {
     constructor({ firstname, lastname, email, password }) {
         this.firstname = firstname;
