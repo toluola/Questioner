@@ -1,4 +1,6 @@
+
 import Usermodel from "../models/user";
+
 
 class userController {
     static async signup(req, resp) {

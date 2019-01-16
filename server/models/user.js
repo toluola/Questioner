@@ -5,7 +5,6 @@ import helpers from "../helpers/helpers";
 
 const { JWT_SECRET } = process.env
 
-
 class Usermodel {
     constructor({ firstname, lastname, email, password }) {
         this.firstname = firstname;
@@ -23,7 +22,6 @@ async Signup(){
         return createUser.rows[0];
 
     }
-
 
 async login(){
     const authQuery = await profiles.query("SELECT * FROM profiles WHERE email = $1",
