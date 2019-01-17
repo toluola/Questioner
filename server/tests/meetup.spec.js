@@ -19,12 +19,6 @@ export default function() {
     topic: "javascript"
   };
 
-  const respondMeetup = {
-    images: ["java.jpg", "jpg.jpg"],
-    tags: ["java", "php"],
-    happening_on: "22-10-2019",
-    topic: "javascript"
-  };
   let adminToken;
   before(async () => {
     const response = await chai
