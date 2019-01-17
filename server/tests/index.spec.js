@@ -2,6 +2,7 @@ import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 import meetup from "./meetup.spec";
 import question from "./question.spec";
+import user from "./user.spec";
 
 import app from "../index";
 
@@ -35,3 +36,4 @@ describe("Welcome", () => {
 
 meetup();
 question();
+user();

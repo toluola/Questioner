@@ -37,6 +37,7 @@
       "UI/**.js",
       "**/database/**",
       "**/controllers/**",
+      "**/helpers/**",
       "**/**.spec.js"
     ]
   },

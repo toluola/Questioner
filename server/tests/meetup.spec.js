@@ -19,11 +19,6 @@ export default function() {
     topic: "javascript"
   };
 
-  const respondMeetup = {
-    meetup_id: 5,
-    user_id: 1,
-    response: "yes"
-  };
   let adminToken;
   before(async () => {
     const response = await chai
