@@ -13,17 +13,12 @@ export default function() {
 
   const question = {
     createdby_id: 1,
-    meetup_id: 5,
+    meetup_id: 1,
     title: "java",
     body: "jave",
     votes: 1
   };
 
-  const respondMeetup = {
-    meetup_id: 5,
-    user_id: 1,
-    response: "yes"
-  };
   let adminToken;
   before(async () => {
     const response = await chai

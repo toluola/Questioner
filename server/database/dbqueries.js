@@ -24,7 +24,7 @@ const Migration = {
         images text[],
         tags text[],
         topic text not null,
-        happening_on Date not null,
+        happening_on text not null,
         status text default 'active'::text,
         created_on timestamp default now() not null
       );
@@ -59,7 +59,7 @@ const Migration = {
         comment text not null);
     `);
 
-      await process.exit(0);
+      process.exit(0);
     } catch (e) {
       console.log("Caught: ", e.message);
     }

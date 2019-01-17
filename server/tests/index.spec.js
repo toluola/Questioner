@@ -19,5 +19,19 @@ describe("Error", () => {
   });
 });
 
+describe("Welcome", () => {
+  it("should welcome to questioner", async () => {
+    const res = await chai.request(app).get("/api/v1");
+    expect(res).to.have.status(200);
+    expect(res.body).to.be.an("object");
+    expect(res.body)
+      .to.have.property("message")
+      .to.eql("Welcome to questioner base URL");
+    expect(res.body)
+      .to.have.property("status")
+      .to.eql(200);
+  });
+});
+
 meetup();
 question();
