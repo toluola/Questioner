@@ -1,14 +1,29 @@
+import jwt from "jsonwebtoken";
 import Usermodel from "../models/user";
+
+const { JWT_SECRET } = process.env;
 
 class UserController {
   static async signup(req, resp) {
     try {
       const { firstname, lastname, email, password } = req.body;
       const newSignup = new Usermodel({ firstname, lastname, email, password });
-      const createdSignup = await newSignup.Signup();
+      const user = await newSignup.Signup();
+
+      user.password = null;
+      const payload = {
+        profile: user
+      };
+
+      const token = jwt.sign(payload, JWT_SECRET, {
+        expiresIn: "24h"
+      });
       resp.status(201).json({
         status: 201,
-        profile: createdSignup,
+        data: {
+          user,
+          token
+        },
         message: "User created successfully"
       });
     } catch (error) {
@@ -23,8 +38,7 @@ class UserController {
       }
       return resp.status(500).json({
         status: 500,
-        message: "Registration failed. Try later",
-        error: error.message
+        message: "Registration failed. Try later"
       });
     }
   }

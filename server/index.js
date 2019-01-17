@@ -25,12 +25,6 @@ app.use("/api/v1/meetups", meetupRoutes);
 app.use("/api/v1/questions", questionRoutes);
 app.use("/api/v1/comments", commentRoutes);
 app.use("/api/v1/auth", userRoutes);
-app.use("/api/v1", (req, res) => {
-  res.status(200).json({
-    status: 200,
-    message: "Welcome to questioner base URL"
-  });
-});
 
 app.use((req, res, next) => {
   const error = new Error("Invalid URL");
