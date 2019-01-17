@@ -20,9 +20,10 @@ export default function() {
   };
 
   const respondMeetup = {
-    meetup_id: 5,
-    user_id: 1,
-    response: "yes"
+    images: ["java.jpg", "jpg.jpg"],
+    tags: ["java", "php"],
+    happening_on: "22-10-2019",
+    topic: "javascript"
   };
   let adminToken;
   before(async () => {
