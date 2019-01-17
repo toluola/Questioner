@@ -10,7 +10,6 @@ import questionRoutes from "./routes/question";
 import commentRoutes from "./routes/comment";
 import userRoutes from "./routes/user";
 
-
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
@@ -26,20 +25,26 @@ app.use("/api/v1/meetups", meetupRoutes);
 app.use("/api/v1/questions", questionRoutes);
 app.use("/api/v1/comments", commentRoutes);
 app.use("/api/v1/auth", userRoutes);
+app.use("/api/v1", (req, res) => {
+  res.status(200).json({
+    status: 200,
+    message: "Welcome to questioner base URL"
+  });
+});
 
 app.use((req, res, next) => {
-	const error = new Error("Invalid URL");
-	error.status = 404;
-	next(error);
+  const error = new Error("Invalid URL");
+  error.status = 404;
+  next(error);
 });
 
 app.use((error, req, res, next) => {
-	res.status(error.status || 500).json({
-		error: {
-			message: error.message
-		}
-	});
-	next();
+  res.status(error.status || 500).json({
+    error: {
+      message: error.message
+    }
+  });
+  next();
 });
 
 app.listen(PORT, () => console.log(`Running on localhost:${PORT}`));

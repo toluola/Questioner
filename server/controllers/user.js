@@ -1,4 +1,4 @@
-import Usermodel from "../models/User";
+import Usermodel from "../models/user";
 
 class UserController {
   static async signup(req, resp) {
