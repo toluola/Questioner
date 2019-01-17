@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 
 class helpers {
-
   static hashPassword(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
   }
@@ -110,22 +109,28 @@ class helpers {
     return false;
   }
 
-  static validateSignup (req, resp, next) {
+  static validateSignup(req, resp, next) {
     req.checkBody("email").isEmail();
-		const errors = req.validationErrors();
-		if (errors) {
-			return resp.status(422).json({ errors });
-		}
-      next();
+    const errors = req.validationErrors();
+    if (errors) {
+      return resp.status(422).json({
+        error: "Invalid Email",
+        status: 422
+      });
+    }
+    next();
   }
 
-  static validateLogin (req, resp, next) {
+  static validateLogin(req, resp, next) {
     req.checkBody("email").isEmail();
-		const errors = req.validationErrors();
-		if (errors) {
-			return resp.status(422).json({ errors });
-		}
-      next();
+    const errors = req.validationErrors();
+    if (errors) {
+      return resp.status(422).json({
+        error: "Invalid Email",
+        status: 422
+      });
+    }
+    next();
   }
 }
 
