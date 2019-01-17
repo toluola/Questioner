@@ -108,6 +108,15 @@ class meetupsController {
       [meetup_id, user_id, response],
       (err, res) => {
         if (err) {
+          if (
+            err.message ===
+            'insert or update on table "upcomings" violates foreign key constraint "upcomings_user_id_fkey"'
+          ) {
+            return resp.status(409).json({
+              status: 409,
+              message: "The user id you supplied does not exist. Thanks"
+            });
+          }
           return next(err);
         }
 
