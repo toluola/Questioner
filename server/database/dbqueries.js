@@ -5,6 +5,7 @@ const Migration = {
   async migrate() {
     try {
       /* eslint-disable no-console */
+
       console.log("Creating table profiles");
       await pool.query(`drop table if exists profiles; create table profiles(
         id serial not null constraint profiles_pkey primary key,
@@ -23,7 +24,7 @@ const Migration = {
         images text[],
         tags text[],
         topic text not null,
-        happening_on text not null,
+        happening_on Date not null,
         status text default 'active'::text,
         created_on timestamp default now() not null
       );
@@ -57,6 +58,7 @@ const Migration = {
         body text not null,
         comment text not null);
     `);
+
       await process.exit(0);
     } catch (e) {
       console.log("Caught: ", e.message);
