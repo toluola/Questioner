@@ -117,6 +117,16 @@ class meetupsController {
               message: "The user id you supplied does not exist. Thanks"
             });
           }
+
+          if (
+            err.message ===
+            'duplicate key value violates unique constraint "upcomings_pkey"'
+          ) {
+            return resp.status(409).json({
+              status: 409,
+              message: "You have previously responded to this meetup. Thanks"
+            });
+          }
           return next(err);
         }
 
