@@ -25,7 +25,7 @@ class meetupsController {
     if (validateBody) {
       return resp.status(400).json({
         message: validateBody,
-        status: "Validation error"
+        status: 400
       });
     }
 
@@ -86,7 +86,7 @@ class meetupsController {
     if (validateBody) {
       return resp.status(400).json({
         message: validateBody,
-        status: "Validation error"
+        status: 400
       });
     }
 

@@ -20,8 +20,16 @@ class helpers {
       errors.push("location is missing. Meetup not created");
     }
 
+    if (requestBody.location.match(/^\s*$/)) {
+      errors.push("white spaces not accepted. Meetup not created");
+    }
+
     if (!requestBody.images) {
       errors.push("Images is missing. Meetup not created");
+    }
+
+    if (requestBody.topic.match(/^\s*$/)) {
+      errors.push("white spaces not accepted. Meetup not created");
     }
 
     if (!requestBody.topic) {
@@ -57,8 +65,16 @@ class helpers {
       errors.push("The question title is missing. Question not created");
     }
 
+    if (requestBody.title.match(/^\s*$/)) {
+      errors.push("white spaces not accepted. Meetup not created");
+    }
+
     if (!requestBody.body) {
       errors.push("The question body is missing. Question not created");
+    }
+
+    if (requestBody.body.match(/^\s*$/)) {
+      errors.push("white spaces not accepted. Meetup not created");
     }
 
     if (errors.length > 0) {

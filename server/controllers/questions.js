@@ -21,7 +21,7 @@ class questionsController {
     if (validateBody) {
       return resp.status(400).json({
         message: validateBody,
-        status: "Validation error"
+        status: 400
       });
     }
 
@@ -157,7 +157,7 @@ class questionsController {
     if (validateBody) {
       return resp.status(400).json({
         message: validateBody,
-        status: "Validation error"
+        status: 400
       });
     }
 
