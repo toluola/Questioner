@@ -2,170 +2,189 @@ import dbConfig from "../database/dbSetup";
 import validation from "../helpers/helpers";
 
 class questionsController {
-	static getQuestions(req, resp, next) {
-		dbConfig.query("SELECT * FROM questions", (err, res) => {
-			if (err) {
-				return next(err);
-			}
+  static getQuestions(req, resp, next) {
+    dbConfig.query("SELECT * FROM questions", (err, res) => {
+      if (err) {
+        return next(err);
+      }
 
-			return resp.status(200).json({
-				status: 200,
-				questions: res.rows,
-				message: "Questions Fetched Successfully"
-			});
-		});
-	}
+      return resp.status(200).json({
+        status: 200,
+        questions: res.rows,
+        message: "Questions Fetched Successfully"
+      });
+    });
+  }
 
-	static createQuestion(req, resp, next) {
-		const validateBody = validation.validateQuestionRequest(req.body);
-		if (validateBody) {
-			return resp.status(400).json({
-				message: validateBody,
-				status: "Validation error"
-			});
-		}
+  static createQuestion(req, resp, next) {
+    const validateBody = validation.validateQuestionRequest(req.body);
+    if (validateBody) {
+      return resp.status(400).json({
+        message: validateBody,
+        status: 400
+      });
+    }
 
-		const question = {
-			createdby_id: req.body.createdby_id,
-			meetup_id: req.body.meetup_id,
-			title: req.body.title,
-			body: req.body.body,
-			votes: req.body.votes
-		};
+    const question = {
+      createdby_id: req.body.createdby_id,
+      meetup_id: req.body.meetup_id,
+      title: req.body.title,
+      body: req.body.body,
+      votes: req.body.votes
+    };
 
-		const { createdby_id, meetup_id, title, body, votes } = question;
-		dbConfig.query(
-			"INSERT INTO questions (createdby_id, meetup_id, title, body, votes) VALUES ($1,$2,$3,$4,$5) RETURNING *",
-			[createdby_id, meetup_id, title, body, votes],
-			(err, res) => {
-				if (err) {
-					return next(err);
-				}
+    const { createdby_id, meetup_id, title, body, votes } = question;
+    dbConfig.query(
+      "INSERT INTO questions (createdby_id, meetup_id, title, body, votes) VALUES ($1,$2,$3,$4,$5) RETURNING *",
+      [createdby_id, meetup_id, title, body, votes],
+      (err, res) => {
+        if (err) {
+          if (
+            err.message ===
+            'insert or update on table "questions" violates foreign key constraint "questions_createdby_id_fkey"'
+          ) {
+            return resp.status(409).json({
+              status: 409,
+              message: "The user id you supplied does not exist. Thanks"
+            });
+          }
 
-				return resp.status(201).json({
-					status: 201,
-					questions: res.rows[0],
-					message: "Question created Successfully"
-				});
-			}
-		);
-	}
+          if (
+            err.message ===
+            'insert or update on table "questions" violates foreign key constraint "questions_meetup_id_fkey"'
+          ) {
+            return resp.status(409).json({
+              status: 409,
+              message: "The meetup id you supplied does not exist. Thanks"
+            });
+          }
+          return next(err);
+        }
 
-	static upvoteQuestion(req, resp, next) {
-		const question_id = parseInt(req.params.question_id, 10);
-		let meetupFound;
-		let newVote;
+        return resp.status(201).json({
+          status: 201,
+          questions: res.rows[0],
+          message: "Question created Successfully"
+        });
+      }
+    );
+  }
 
-		dbConfig.query(
-			"SELECT * FROM questions WHERE id = $1",
-			[question_id],
-			(err, res) => {
-				if (err) {
-					return next(err);
-				}
-				meetupFound = res.rows[0];
-				newVote = res.rows[0].votes + 1;
+  static upvoteQuestion(req, resp, next) {
+    const question_id = parseInt(req.params.question_id, 10);
+    let meetupFound;
+    let newVote;
 
-				if (meetupFound) {
-					dbConfig.query(
-						"UPDATE questions SET (votes) = ($1) WHERE id = $2 RETURNING *",
-						[newVote, question_id],
-						(errr, ress) => {
-							if (errr) {
-								return next(errr);
-							}
+    dbConfig.query(
+      "SELECT * FROM questions WHERE id = $1",
+      [question_id],
+      (err, res) => {
+        if (err) {
+          return next(err);
+        }
+        meetupFound = res.rows[0];
+        newVote = res.rows[0].votes + 1;
 
-							return resp.status(200).json({
-								status: 200,
-								MeetupVoted: ress.rows[0],
-								message: "Question upvoted Successfully"
-							});
-						}
-					);
-				} else {
-					resp.status(404).json({
-						status: 404,
-						message: "No Question Found"
-					});
-				}
-			}
-		);
-	}
+        if (meetupFound) {
+          dbConfig.query(
+            "UPDATE questions SET (votes) = ($1) WHERE id = $2 RETURNING *",
+            [newVote, question_id],
+            (errr, ress) => {
+              if (errr) {
+                return next(errr);
+              }
 
-	static downvoteQuestion(req, resp, next) {
-		const question_id = parseInt(req.params.question_id, 10);
-		let meetupFound;
-		let newVote;
+              return resp.status(200).json({
+                status: 200,
+                MeetupVoted: ress.rows[0],
+                message: "Question upvoted Successfully"
+              });
+            }
+          );
+        } else {
+          resp.status(404).json({
+            status: 404,
+            message: "No Question Found"
+          });
+        }
+      }
+    );
+  }
 
-		dbConfig.query(
-			"SELECT * FROM questions WHERE id = $1",
-			[question_id],
-			(err, res) => {
-				if (err) {
-					return next(err);
-				}
-				meetupFound = res.rows[0];
-				newVote = res.rows[0].votes - 1;
+  static downvoteQuestion(req, resp, next) {
+    const question_id = parseInt(req.params.question_id, 10);
+    let meetupFound;
+    let newVote;
 
-				if (meetupFound) {
-					dbConfig.query(
-						"UPDATE questions SET (votes) = ($1) WHERE id = $2 RETURNING *",
-						[newVote, question_id],
-						(errr, ress) => {
-							if (errr) {
-								return next(errr);
-							}
+    dbConfig.query(
+      "SELECT * FROM questions WHERE id = $1",
+      [question_id],
+      (err, res) => {
+        if (err) {
+          return next(err);
+        }
+        meetupFound = res.rows[0];
+        newVote = res.rows[0].votes - 1;
 
-							return resp.status(200).json({
-								status: 200,
-								MeetupVoted: ress.rows[0],
-								message: "Question Downvoted Successfully"
-							});
-						}
-					);
-				} else {
-					resp.status(404).json({
-						status: 404,
-						message: "No Question Found"
-					});
-				}
-			}
-		);
-	}
+        if (meetupFound) {
+          dbConfig.query(
+            "UPDATE questions SET (votes) = ($1) WHERE id = $2 RETURNING *",
+            [newVote, question_id],
+            (errr, ress) => {
+              if (errr) {
+                return next(errr);
+              }
 
-	static createQuestionComment(req, resp, next) {
-		const validateBody = validation.validateCommentRequest(req.body);
-		if (validateBody) {
-			return resp.status(400).json({
-				message: validateBody,
-				status: "Validation error"
-			});
-		}
+              return resp.status(200).json({
+                status: 200,
+                MeetupVoted: ress.rows[0],
+                message: "Question Downvoted Successfully"
+              });
+            }
+          );
+        } else {
+          resp.status(404).json({
+            status: 404,
+            message: "No Question Found"
+          });
+        }
+      }
+    );
+  }
 
-		const comments = {
-			question_id: req.body.question_id,
-			title: req.body.title,
-			body: req.body.body,
-			comment: req.body.comment
-		};
+  static createQuestionComment(req, resp, next) {
+    const validateBody = validation.validateCommentRequest(req.body);
+    if (validateBody) {
+      return resp.status(400).json({
+        message: validateBody,
+        status: 400
+      });
+    }
 
-		const { question_id, title, body, comment } = comments;
-		dbConfig.query(
-			"INSERT INTO comments (question_id, title, body, comment) VALUES ($1,$2,$3,$4) RETURNING *",
-			[question_id, title, body, comment],
-			(err, res) => {
-				if (err) {
-					return next(err);
-				}
+    const comments = {
+      question_id: req.body.question_id,
+      title: req.body.title,
+      body: req.body.body,
+      comment: req.body.comment
+    };
 
-				return resp.status(201).json({
-					status: 201,
-					questions: res.rows[0],
-					message: "Comment created Successfully"
-				});
-			}
-		);
-	}
+    const { question_id, title, body, comment } = comments;
+    dbConfig.query(
+      "INSERT INTO comments (question_id, title, body, comment) VALUES ($1,$2,$3,$4) RETURNING *",
+      [question_id, title, body, comment],
+      (err, res) => {
+        if (err) {
+          return next(err);
+        }
+
+        return resp.status(201).json({
+          status: 201,
+          questions: res.rows[0],
+          message: "Comment created Successfully"
+        });
+      }
+    );
+  }
 }
 
 export default questionsController;

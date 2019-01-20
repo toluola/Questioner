@@ -1,4 +1,14 @@
+import bcrypt from "bcrypt";
+
 class helpers {
+  static hashPassword(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+  }
+
+  static comparePassword(hashPassword, password) {
+    return bcrypt.compareSync(password, hashPassword);
+  }
+
   static isNumber(number) {
     return !isNaN(number);
   }
@@ -10,8 +20,16 @@ class helpers {
       errors.push("location is missing. Meetup not created");
     }
 
+    if (requestBody.location.match(/^\s*$/)) {
+      errors.push("white spaces not accepted. Meetup not created");
+    }
+
     if (!requestBody.images) {
       errors.push("Images is missing. Meetup not created");
+    }
+
+    if (requestBody.topic.match(/^\s*$/)) {
+      errors.push("white spaces not accepted. Meetup not created");
     }
 
     if (!requestBody.topic) {
@@ -47,8 +65,16 @@ class helpers {
       errors.push("The question title is missing. Question not created");
     }
 
+    if (requestBody.title.match(/^\s*$/)) {
+      errors.push("white spaces not accepted. Meetup not created");
+    }
+
     if (!requestBody.body) {
       errors.push("The question body is missing. Question not created");
+    }
+
+    if (requestBody.body.match(/^\s*$/)) {
+      errors.push("white spaces not accepted. Meetup not created");
     }
 
     if (errors.length > 0) {
@@ -97,6 +123,30 @@ class helpers {
       return errors;
     }
     return false;
+  }
+
+  static validateSignup(req, resp, next) {
+    req.checkBody("email").isEmail();
+    const errors = req.validationErrors();
+    if (errors) {
+      return resp.status(422).json({
+        error: "Invalid Email",
+        status: 422
+      });
+    }
+    next();
+  }
+
+  static validateLogin(req, resp, next) {
+    req.checkBody("email").isEmail();
+    const errors = req.validationErrors();
+    if (errors) {
+      return resp.status(422).json({
+        error: "Invalid Email",
+        status: 422
+      });
+    }
+    next();
   }
 }
 
