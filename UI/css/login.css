@@ -9,7 +9,6 @@ body {
 }
 
 .form-popup {
-	position: fixed;
 	bottom: 200px;
 	margin-left: 400px;
 	border: 3px solid #f1f1f1;
@@ -17,8 +16,10 @@ body {
 	height: 300px;
 	width: 500px;
 	border-radius: 10px;
-	padding-left: 50px;
+	padding-left: 90px;
 	padding-right: 10px;
+	margin-top: 180px;
+	margin-bottom: 100px;
 }
 
 .form-popup h2 {
@@ -139,7 +140,6 @@ input[type="password"]:focus {
 	padding: 2em 0;
 	color: #8e9ea9;
 	word-spacing: 1.5em;
-	margin-top: 590px;
 }
 .copyright:after {
 	content: "";
@@ -171,11 +171,18 @@ input[type="password"]:focus {
 	font-size: 1.8em;
 }
 
-.clearfix:after {
-	content: " ";
-	visibility: hidden;
-	display: block;
-	height: 0;
-	clear: both;
-}
+@media only screen and (max-width: 1000px) {
+	.form-popup {
+		margin-left: 10px;
+		padding-left: 70px;
+		width: 70%;
+	}
 
+	input[type="number"],
+	input[type="text"],
+	input[type="email"],
+	input[type="password"],
+	textarea {
+		width: 70%;
+	}
+}
