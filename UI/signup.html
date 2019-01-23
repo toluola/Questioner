@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Login</title>
+	<title>Sign-up</title>
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
@@ -12,22 +12,32 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <div class="header">
     <a href="index.html" class="logo clearfix">QUESTIONER</a>
-    <a href="signup.html" class="login">SIGN UP</a>
+    <a href="login.html" class="login">SIGN IN</a>
   </div>
 
-	<div class="form-popup" id="myForm">
+<div class="form-signup" id="myFormSign">
+    
   <form class="form-container">
-    <h2>SIGN IN</h2>
+    
+    <h2 class="sign">SIGN UP</h2>
     <br> <br>
+
+    <label for="first-name" class="field"><b>Firstname</b></label>
+    <input type="text" placeholder="firstname..." class="first-name" name="first-name" required>
+    <br> <br> <br>
+
+    <label for="last-name" class="field"><b>Lastname</b></label>
+    <input type="text" placeholder="lastname..." name="last-name" class="last-name" required>
+    <br> <br> <br>
 
     <label for="email" class="field"><b>Email</b></label>
-    <input type="email" placeholder="example@example.com" class="email" name="email" required>
-    <br> <br>
+    <input type="email" placeholder="example@example.com" name="email" class="email" required>
+    <br> <br> <br>
 
-    <label for="password" class="field"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password..." name="password" class="password" required>
-    <br> <br>		
-    <button onclick="location.href = 'admin.html';" class="button">Sign In</button>
+     <label for="number" class="field"><b>Phone Number</b></label>
+    <input type="number" placeholder="080xxxxxxxx" name="number" class="number" required>
+    <br> <br>
+    <button class="button">Sign Up</button>
   </form>
 </div>
 
