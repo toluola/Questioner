@@ -1,0 +1,142 @@
+.header {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 4.0625em;
+	z-index: 100;
+	background: rgba(255, 255, 255, 0.9);
+	padding: 0.9em 1.25em;
+	line-height: 2em;
+	text-align: right;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	word-spacing: 2.5em;
+}
+
+.header * {
+	display: inline-block;
+	word-spacing: normal;
+}
+
+.header .logo {
+	float: left;
+	font-size: 20px;
+	font-weight: bold;
+	color: #01b0fe;
+	text-decoration: none;
+}
+
+.header .login {
+	font-size: 15px;
+	color: #03b4fe;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition: all 0.2s;
+	border: 0 solid transparent;
+}
+
+.header .login:hover {
+	border: 0.166em solid #03b4fe;
+	border-radius: 2em;
+	padding: 0 1em;
+}
+
+.card {
+	text-align: center;
+	border: 1px solid #e1e1e1;
+	background: white;
+	width: 45%;
+	margin-left: 370px;
+	margin-top: 80px;
+}
+
+textarea {
+	width: 100%;
+	height: 38px;
+	padding: 6px 10px;
+	background-color: #fff;
+	border: 1px solid #d1d1d1;
+	border-radius: 4px;
+	box-shadow: none;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+h4 {
+	/*float: left;*/
+	margin-left: -500px;
+}
+
+.p {
+	margin-left: -500px;
+}
+
+.price {
+	margin-left: -470px;
+}
+
+.info-card {
+	padding: 10px 20px;
+}
+
+.post {
+	border-radius: 5px;
+}
+.info-card p,
+.card h4 {
+	margin-bottom: 5px;
+	color: #01b0fe;
+}
+.info-card .price {
+	font-size: 15px;
+	margin-top: 10px;
+}
+.info-card .price span {
+	font-size: 10px;
+	float: right;
+}
+
+img {
+	width: 100%;
+	height: 30%;
+}
+
+.font {
+	float: right;
+	color: #01b0fe;
+}
+
+button {
+	float: right;
+	display: inline-block;
+	padding: 0.75em 1.4em;
+	font-weight: bold;
+	line-height: normal;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	background-color: #99ce45;
+	border: 0.125em solid #99ce45;
+	color: #fff;
+	transition: background 0.4s, color 0.4s, border-color 0.4s;
+}
+
+button:hover {
+	background: transparent;
+	color: #99ce45;
+}
+
+.input {
+	color: #99ce45;
+	margin-left: -370px;
+	text-decoration: none;
+}
+
+.question {
+	color: #99ce45;
+	margin-left: 480px;
+	text-decoration: none;
+}
