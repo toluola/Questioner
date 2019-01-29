@@ -21,21 +21,22 @@
     
     <h2 class="sign">SIGN UP</h2>
     <br> <br>
+    <div class="loginError">Error. Something Went Wrong</div>
 
     <label for="first-name" class="field"><b>Firstname</b></label>
-    <input type="text" placeholder="firstname..." class="first-name" name="first-name" required>
+    <input type="text" placeholder="firstname..." class="first-name" name="first-name" id="first-name" required>
     <br> <br> <br>
 
     <label for="last-name" class="field"><b>Lastname</b></label>
-    <input type="text" placeholder="lastname..." name="last-name" class="last-name" required>
+    <input type="text" placeholder="lastname..." name="last-name" class="last-name" id="last-name" required>
     <br> <br> <br>
 
     <label for="email" class="field"><b>Email</b></label>
-    <input type="email" placeholder="example@example.com" name="email" class="email" required>
+    <input type="email" placeholder="example@example.com" name="email" class="email" id="email" required>
     <br> <br> <br>
 
-     <label for="number" class="field"><b>Phone Number</b></label>
-    <input type="number" placeholder="080xxxxxxxx" name="number" class="number" required>
+     <label for="password" class="field"><b>Password</b></label>
+    <input type="password" placeholder="Enter password..." name="password" class="password" id="password" required>
     <br> <br>
     <button class="button">Sign Up</button>
   </form>
@@ -55,6 +56,6 @@
 </footer>
 
 
-	
+<script src="js/signup.js"></script>	
 </body>
 </html>
