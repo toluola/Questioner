@@ -53,6 +53,19 @@ body {
   color: #01b0fe;
 }
 
+.form-popup h2 {
+  color: #01b0fe;
+}
+
+.loginError {
+  margin-left: 10px;
+  font-size: 15px;
+  position: relative;
+  font-weight: bold;
+  display: none;
+  color: #01b0fe;
+}
+
 input[type="number"],
 input[type="text"],
 input[type="email"],
