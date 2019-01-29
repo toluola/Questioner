@@ -20,14 +20,16 @@
     <h2>SIGN IN</h2>
     <br> <br>
 
+     <div class="loginError">Error. Something Went Wrong</div>
+
     <label for="email" class="field"><b>Email</b></label>
-    <input type="email" placeholder="example@example.com" class="email" name="email" required>
+    <input type="email" placeholder="example@example.com" class="email" id="email" name="email" required>
     <br> <br>
 
     <label for="password" class="field"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password..." name="password" class="password" required>
+    <input type="password" placeholder="Enter Password..." name="password" id="password" class="password" required>
     <br> <br>		
-    <button onclick="location.href = 'admin.html';" class="button">Sign In</button>
+    <button class="button">Sign In</button>
   </form>
 </div>
 
@@ -45,6 +47,6 @@
 </footer>
 
 
-	
+<script  src="js/login.js"></script>
 </body>
 </html>
