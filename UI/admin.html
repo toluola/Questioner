@@ -16,18 +16,18 @@
     <a href="admin.html" class="logo u-pull-left">QUESTIONER</a>
     <a href="#" class="button view">View Meetups</a>
     <a href="#" class="button create">Create Meetups</a>
-    <a href="index.html" class="button">Logout</a>
+    <a href="index.html" class="button logout">Logout</a>
     
   </div>
 
    <div id='card'>
         <h3>Create a Meetup</h3>
         <br>
-    <form class="form" accept="image/gif,image/jpeg">
-        <p type="Topic:"><input class="user-form"></input></p><br><br>
-        <p type="Location:"><input class="user-form"></input></p><br><br>
-        <p type="Date:"><input class="user-form"></input></p><br><br>
-        <p type="Tags:"><input class="user-form"></input></p><br><br>
+    <form class="form" accept="image/gif,image/jpeg" id="meetup-form">
+        <p type="Topic:"><input class="user-form" id="topic"></input></p><br><br>
+        <p type="Location:"><input class="user-form" id="location"></input></p><br><br>
+        <p type="Date:"><input class="user-form" id="date"></input></p><br><br>
+        <p type="Tags:"><input class="user-form" id="tags"></input></p><br><br>
         Add image: <input type="file" name="pic" id="pic"><br><br><br>
         <button class="button create-button">Create</button>
 	</form>
@@ -35,91 +35,23 @@
 
     </div>
    
-  <div id="courses-list" class="container clearfix">
+ <div id="courses-list" class="container clearfix">
         <h2 id="heading" class="heading">All Meetups</h2>
         <hr>
-        <div class="row">
+        <div class="meetup-container">
+        <!-- <div class="row">
             <div class="four columns">
                 <div class="card">
                     <img src="img/course1.jpg" class="course-image u-full-width">
                     <div class="info-card">
-                    	<span class="close-form">&times;</span>
+                        <span class="close-form">&times;</span>
                         <h4>JAVASCRIPT</h4>
                         <p>Lekki Hall</p>
                         <p class="price">27-6-2019  <span class="u-pull-right ">react,js,</span></p>
-     
                     </div>
-                </div> <!--.card-->
-            </div>
-            <div class="four columns">
-                    <div class="card">
-                        <img src="img/course2.jpg" class="course-image u-full-width">
-                        <div class="info-card">
-                        	<span class="close-form">&times;</span>
-                            <h4>Ruby</h4>
-                            <p>Eko Hotels</p>
-                            
-                            <p class="price">22-10-2019  <span class="u-pull-right ">code,programmer</span></p>
-                           
-                        </div>
-                    </div>
-            </div>
-            <div class="four columns">
-                    <div class="card">
-                        <img src="img/course3.jpg" class="course-image u-full-width">
-                        <div class="info-card">
-                        	<span class="close-form">&times;</span>
-                            <h4>Learning Shoe making</h4>
-                            <p>Charity Hall</p>
-                            
-                            <p class="price">29-12-2020  <span class="u-pull-right ">cooking,chef</span></p>
-                            
-                        </div>
-                    </div> <!--.card-->
-            </div>
-
-        </div> <!--.row-->
-        <div class="row">
-            <div class="four columns">
-                <div class="card">
-                    <img src="img/course4.jpg" class="course-image u-full-width">
-                    <div class="info-card">
-                    	<span class="close-form">&times;</span>
-                        <h4>Data science</h4>
-                        <p>Victoria Hall</p>
-                       
-                        <p class="price">10-02-2022  <span class="u-pull-right ">data,scientist</span></p>
-                        
-                    </div>
-                </div> <!--.card-->
-            </div>
-            <div class="four columns">
-                    <div class="card">
-                        <img src="img/course5.jpg" class="course-image u-full-width">
-                        <div class="info-card">
-                        	<span class="close-form">&times;</span>
-                            <h4>Artificial Inteligence</h4>
-                            <p>Ikotun Hall</p>
-                            
-                            <p class="price">12-12-2018  <span class="u-pull-right ">AI,computer</span></p>
-                            
-                        </div>
-                    </div> <!--.card-->
-            </div>
-            <div class="four columns">
-                    <div class="card">
-                        <img src="img/course1.jpg" class="course-image u-full-width">
-                        <div class="info-card">
-                        	<span class="close-form">&times;</span>
-                            <h4>Web Design</h4>
-                            <p>Ajah Hall</p>
-                           
-                            <p class="price">10-10-2018  <span class="u-pull-right ">designer</span></p>
-                            
-                        </div>
-                    </div> <!--.card-->
-            </div>
-        </div> <!--.row-->
+                </div> 
+            </div> -->
+        </div>
     </div>
 
      <div id="myModal" class="modal">
@@ -130,7 +62,7 @@
     </div>
    <div class="modal-body">
     <span class="close">&times;</span>
-       <p></p>
+       <p id="content"></p>
    </div>
   </div>
 
@@ -148,6 +80,7 @@
   </div>
 
 
-<script src="js/admin.js"></script>	
+<script src="js/admin.js"></script> 
+<script src="js/logout.js"></script>	
 </body>
 </html>

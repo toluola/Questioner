@@ -11,17 +11,6 @@
     "build": "babel server -d dist",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/toluola/Questioner.git"
