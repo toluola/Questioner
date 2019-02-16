@@ -2,6 +2,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  font-family:Montserrat, Arial, Helvetica, Tahoma, Verdana, sans-serif;
 }
 
 #landing,
@@ -138,7 +139,7 @@ body {
   transition: all 0.2s;
   border: 0 solid transparent;
 }
-#landing > .header > .login:before {
+/*#landing > .header > .login:before {
   content: "";
   display: inline-block;
   width: 1.429em;
@@ -147,7 +148,7 @@ body {
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAUVBMVEUAAAABsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4BsP4pJ89bAAAAGnRSTlMA3etU5rMKqwaJW0hPRNAR88qUaybCgWI/MCVqoPAAAAC5SURBVBjTTZBXssMwDAOpZsmOS9or2fsfNBgqynh/RGKIIURzWqqBa6ip2ZcUgJyBkIY2Q1kns2ktMA8tXuzDJXY1EZ96Xr/zv55nJGlHZlOzIh4qNnKzhWIiIIKJwmKV1URGRHNP1cikaooueikD2cSBc3STXeURBVG8jLjdl4rNPvZKT77D3vNTRyS7wc1GpJY1Ov3tnvNxaDA3/2bhy08k9YOcGWe6c+J+PrLjRx60pQYpdWnevgG0mRAe7+n/PQAAAABJRU5ErkJggg==")
     no-repeat center center;
   background-size: contain;
-}
+}*/
 #landing > .header > .login:hover {
   border: 0.166em solid #03b4fe;
   border-radius: 2em;

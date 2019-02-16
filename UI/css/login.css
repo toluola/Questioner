@@ -38,7 +38,6 @@ body {
 
 .sign {
   color: #01b0fe;
-<<<<<<< HEAD
 }
 
 .form-popup h2 {
@@ -52,26 +51,37 @@ body {
   font-weight: bold;
   display: none;
   color: #01b0fe;
-=======
 }
 
 .form-signup {
-	bottom: 200px;
-	margin-left: 400px;
-	border: 3px solid #f1f1f1;
-	background-color: white;
-	height: 500px;
-	width: 500px;
-	border-radius: 10px;
-	padding-left: 90px;
-	padding-right: 10px;
-	margin-top: 110px;
-	margin-bottom: 50px;
+  bottom: 200px;
+  margin-left: 400px;
+  border: 3px solid #f1f1f1;
+  background-color: white;
+  height: 500px;
+  width: 500px;
+  border-radius: 10px;
+  padding-left: 90px;
+  padding-right: 10px;
+  margin-top: 110px;
+  margin-bottom: 50px;
 }
 
 .sign {
-	color: #01b0fe;
->>>>>>> c528a45feb2a0058787b10108e96d70cedc4d683
+  color: #01b0fe;
+}
+
+.form-popup h2 {
+  color: #01b0fe;
+}
+
+.loginError {
+  margin-left: 10px;
+  font-size: 15px;
+  position: relative;
+  font-weight: bold;
+  display: none;
+  color: #01b0fe;
 }
 
 .form-popup h2 {

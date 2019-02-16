@@ -2,33 +2,15 @@ html,
 body {
   margin: 10;
   padding: 0;
-}
-
-.view {
-  display: inline-block;
-  padding: 0.75em 1.4em;
-  border-radius: 2em;
-  font-weight: bold;
-  line-height: normal;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  background-color: #99ce45;
-  border: 0.125em solid #99ce45;
-  color: #fff;
-  transition: background 0.4s, color 0.4s, border-color 0.4s;
-}
-
-.view:hover {
-  background: transparent;
-  color: #99ce45;
+  font-family:Montserrat, Arial, Helvetica, Tahoma, Verdana, sans-serif;
 }
 
 .font {
   text-decoration: none;
-  font-size: 15px;
-  margin-left: 5px;
+  font-size: 30px;
+  margin-left: 15px;
   color: #01b0fe;
+  margin-bottom: 25px;
 }
 
 .url {
@@ -49,6 +31,10 @@ body {
   transition: background 0.4s, color 0.4s, border-color 0.4s;
 }
 
+.comment-text {
+  font-size: 30px;
+}
+
 .post:hover {
   background: transparent;
   color: #99ce45;
@@ -60,9 +46,9 @@ body {
 
 .comments-title {
   margin-top: 90px;
-  margin-left: 600px;
+  margin-left: 570px;
   color: #01b0fe;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 #landing > .header {
@@ -70,7 +56,7 @@ body {
   left: 0;
   right: 0;
   top: 0;
-  height: 4.0625em;
+  height: 2.5em;
   z-index: 100;
   background: rgba(255, 255, 255, 0.9);
   padding: 0.9em 1.25em;
@@ -78,6 +64,22 @@ body {
   text-align: right;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   word-spacing: 2.5em;
+}
+
+.header .login {
+  font-size: 15px;
+  color: #03b4fe;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  border: 0 solid transparent;
+}
+
+.header .login:hover {
+  border: 0.166em solid #03b4fe;
+  border-radius: 2em;
+  padding: 0 1em;
 }
 
 #landing > .header > * {
@@ -95,71 +97,6 @@ body {
   font-size: 0.75em;
   border-width: 0.18em;
 }
-#landing > .menu {
-  text-align: center;
-  background: #01b0fe;
-  font-size: 1.125em;
-  padding: 1.278em 0;
-}
-
-.copyright {
-  font-size: 0.875em;
-  border-top: 2px solid #eee;
-  margin: 2em 6.8em 0;
-  padding: 2em 0;
-  color: #8e9ea9;
-  word-spacing: 1.5em;
-}
-.copyright:after {
-  content: "";
-  display: block;
-  height: 0;
-  overflow: hidden;
-  float: none;
-  clear: both;
-}
-.copyright * {
-  word-spacing: normal;
-}
-.copyright a {
-  color: #01affe;
-  text-decoration: none;
-}
-.copyright a:hover {
-  color: #3e4e5c;
-}
-.copyright .social {
-  float: right;
-  word-spacing: 1.5em;
-}
-.copyright .social * {
-  word-spacing: normal;
-}
-.copyright .social .ico:before {
-  font-family: "ico";
-  font-size: 1.8em;
-}
-
-#landing > .copyright > .social > .fa:before {
-  display: inline-block;
-  font: normal normal normal 1.8em FontAwesome;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#landing > .footer {
-  display: table;
-  width: 100%;
-  padding: 0 6em;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #99ce45;
-}
 
 textarea {
   width: 30%;
@@ -175,9 +112,7 @@ textarea {
   appearance: none;
 }
 
-li {
-  margin-bottom: 30px;
-}
+
 
 @media only screen and (max-width: 1200px) {
   #comments {
@@ -185,6 +120,8 @@ li {
   }
   .comments-title {
     margin-left: 10px;
+    font-size: 20px;
+    margin-top: 50px;
   }
   .post {
     margin-left: 95px;
@@ -192,5 +129,25 @@ li {
   }
   textarea {
     width: 50%;
+  }
+  
+  .font {
+    font-size: 15px;
+  }
+
+  .comment-text {
+    font-size: 15px;
+  }
+
+  .header .login {
+    font-size: 10px;
+  }
+
+  #landing > .header > .logo {
+    font-size: 10px;
+  }
+
+  #landing > .header {
+    height: 1.5em;
   }
 }
