@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Meetup</title>
+    <link rel="stylesheet" href="css/adminmeetup.css">
+</head>
+<body>
+
+	 <div class="header">
+    <a href="index.html" class="logo clearfix">QUESTIONER</a>
+    <a href="#" class="login create">Create Meetups</a>
+    <a href="#" class="login logout">Logout</a>
+  </div>
+
+  <div id="courses-list" class="container clearfix">
+        <h2 id="heading" class="heading">All Meetups</h2>
+        <hr>
+        <div class="meetup-container">
+        </div>
+    </div>
+
+<div id="myModal2" class="modal2">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+    </div>
+   <div class="modal-body">
+    <span class="close2">&times;</span>
+    <div class="but">
+      <p>Are You Sure You Want To Delete This Meetup?</p>
+       <button class="response" onclick="noDelete()">No</button>
+       <button class="response" onclick="yesDelete()">Yes</button>
+    </div>
+   </div>
+  </div>
+
+</div>
+
+<script src="js/adminmeetup.js"></script>
+<script src="js/logout.js"></script>
+</body>
+</html>

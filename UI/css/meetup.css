@@ -1,9 +1,16 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family:Montserrat, Arial, Helvetica, Tahoma, Verdana, sans-serif;
+}
+
 .header {
-  <<<<<<<headposition: fixed;
+  position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  height: 4.0625em;
+  height: 2.5em;
   z-index: 100;
   background: rgba(255, 255, 255, 0.9);
   padding: 0.9em 1.25em;
@@ -43,7 +50,7 @@
 }
 
 .card {
-  text-align: center;
+  text-align: left;
   border: 1px solid #e1e1e1;
   background: white;
   width: 45%;
@@ -66,16 +73,7 @@ textarea {
 }
 
 h4 {
-  /*float: left;*/
-  margin-left: -500px;
-}
-
-.p {
-  margin-left: -500px;
-}
-
-.price {
-  margin-left: -470px;
+ font-size: 20px;
 }
 
 .info-card {
@@ -84,6 +82,7 @@ h4 {
 
 .post {
   border-radius: 5px;
+  float: right;
 }
 .info-card p,
 .card h4 {
@@ -110,7 +109,6 @@ img {
 }
 
 button {
-  float: right;
   display: inline-block;
   padding: 0.75em 1.4em;
   font-weight: bold;
@@ -137,7 +135,7 @@ button:hover {
 
 .question {
   color: #99ce45;
-  margin-left: 480px;
+  margin-left: 490px;
   text-decoration: none;
 }
 
@@ -159,12 +157,64 @@ button:hover {
 .modal2 {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 9; /* Sit on top */
   left: 0;
-  top: 10%;
+  top: 11%;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.but {
+  margin-left: 500px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .card {
+    margin-left: 15px;
+    margin-top: 45px;
+    width: 90%;
+    text-align: left;
+  }
+
+  .question {
+    margin-left: 1px;
+    text-align: left;
+  }
+
+  .header .logo {
+    font-size: 10px;
+  }
+
+  .header .login {
+    font-size: 10px;
+  }
+
+  .header {
+    height: 1em;
+  }
+
+  .input {
+    margin-left: 1px;
+  }
+
+  h4 {
+    margin-left: 5px;
+  }
+
+  .p {
+    margin-left: 5px;
+  }
+
+  .price {
+    margin-left: 5px;
+  }
 }
