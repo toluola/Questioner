@@ -6,8 +6,9 @@
   "scripts": {
     "start": "nodemon --exec babel-node server/index.js",
     "test": "nyc mocha --require babel-register server/tests/*.js --exit",
-    "db_migrate": "babel-node ./server/database/dbqueries.js",
-    "db_seed": "babel-node ./server/database/dbseed.js",
+    "db_migrate": "babel-node ./server/migrations/createtables.js",
+    "db_drop": "babel-node ./server/database/droptables.js",
+    "db_seed": "babel-node ./server/database/seed.js",
     "build": "babel server -d dist",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -41,8 +42,10 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
+    "cloudinary": "^1.13.2",
     "cors": "^2.8.5",
     "coveralls": "^3.0.2",
+    "datauri": "^1.1.0",
     "dotenv": "^6.2.0",
     "eslint": "^5.11.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -59,9 +62,15 @@
     "lint-staged": "^8.1.0",
     "mocha": "^5.2.0",
     "mocha-lcov-reporter": "^1.3.0",
+    "multer": "^1.4.1",
     "nodemon": "^1.18.9",
     "nyc": "^13.1.0",
     "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "pgtools": "^0.3.0",
+    "sequelize": "^4.43.0",
+    "sequelize-cli": "^5.4.0",
+    "sequelize-pg-utilities": "^1.0.8",
     "underscore": "^1.9.1"
   },
   "devDependencies": {

@@ -1,26 +1,38 @@
 import express from "express";
 import questionsController from "../controllers/questions";
 import authRoute from "../helpers/authenticate";
-import Validate from "../helpers/validate";
+import middleware from "../middlewares/question";
+import validate from "../helpers/validate";
 
 const router = express.Router();
 
 router.post(
   "/",
   authRoute.verifyToken,
-  Validate.validateQuestion,
+  middleware.validateQuestions,
+  validate.validateQuestion,
+  middleware.checkIds,
   questionsController.createQuestion
 );
-router.get("/", authRoute.verifyToken, questionsController.getQuestions);
-router.patch(
-  "/:question_id/upvote",
+router.get(
+  "/",
   authRoute.verifyToken,
+  questionsController.fetchQuestions
+);
+
+router.patch(
+  "/upvote/:id",
+  authRoute.verifyToken,
+  middleware.checkQuestionIdExist,
   questionsController.upvoteQuestion
 );
+
 router.patch(
-  "/:question_id/downvote",
+  "/downvote/:id",
   authRoute.verifyToken,
+  middleware.checkQuestionIdExist,
   questionsController.downvoteQuestion
 );
+
 
 export default router;

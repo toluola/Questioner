@@ -1,24 +1,25 @@
-import pg from "pg";
-import dotenv from "dotenv";
-import setupTables from "./dbqueries";
+import Sequelize from "sequelize";
 
-dotenv.config();
-
-const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL
-});
-pool.connect((err, client, done) => {
-  if (err) {
-    return `Can not connect to database due to ${err}`;
+// Establishing connection
+const db = new Sequelize("andela", "andela", "null", {
+  host: "localhost",
+  dialect: "postgres",
+  operatorsAliases: false,
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
   }
-
-  client.query((text, params, callback) => {
-    done();
-    return pool.query(text, params, (error, res) => {
-      callback(error, res);
-    });
-  });
-  return "success";
 });
 
-export default pool;
+// authenticating the connection
+db.authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch(err => {
+    console.error("Unable to connect to the database:", err);
+  });
+
+export default db;

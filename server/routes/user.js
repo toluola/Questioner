@@ -1,10 +1,16 @@
 import express from "express";
 import UserController from "../controllers/user";
-import validate from "../helpers/helpers";
+import Validate from "../helpers/validate";
+import helpers from "../helpers/helpers";
 
 const router = express.Router();
 
-router.post("/signup", validate.validateSignup, UserController.signup);
-router.post("/login", validate.validateLogin, UserController.login);
+router.post(
+  "/signup",
+  Validate.validateSignup,
+  Validate.CheckMailExist,
+  UserController.signup
+);
+router.post("/login", helpers.validateLogin, UserController.login);
 
 export default router;

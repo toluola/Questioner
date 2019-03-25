@@ -1,4 +1,6 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import Profile from "../models/user";
 
 class helpers {
   static hashPassword(password) {
@@ -9,10 +11,6 @@ class helpers {
     return bcrypt.compareSync(password, hashPassword);
   }
 
-  static isNumber(number) {
-    return !isNaN(number);
-  }
-
   static validateMeetupRequest(requestBody) {
     const errors = [];
 
@@ -20,16 +18,8 @@ class helpers {
       errors.push("location is missing. Meetup not created");
     }
 
-    if (requestBody.location.match(/^\s*$/)) {
-      errors.push("white spaces not accepted. Meetup not created");
-    }
-
     if (!requestBody.images) {
       errors.push("Images is missing. Meetup not created");
-    }
-
-    if (requestBody.topic.match(/^\s*$/)) {
-      errors.push("white spaces not accepted. Meetup not created");
     }
 
     if (!requestBody.topic) {
@@ -53,45 +43,16 @@ class helpers {
   static validateQuestionRequest(requestBody) {
     const errors = [];
 
-    if (!requestBody.createdby_id) {
-      errors.push("The question created_by is missing. Question not created");
+    if (!requestBody.profile_id) {
+      errors.push("The question profile_id is missing. Question not created");
     }
 
     if (!requestBody.meetup_id) {
       errors.push("The question meetup_id is missing. Question not created");
     }
 
-    if (!requestBody.title) {
-      errors.push("The question title is missing. Question not created");
-    }
-
-    if (requestBody.title.match(/^\s*$/)) {
-      errors.push("white spaces not accepted. Meetup not created");
-    }
-
     if (!requestBody.body) {
       errors.push("The question body is missing. Question not created");
-    }
-
-    if (requestBody.body.match(/^\s*$/)) {
-      errors.push("white spaces not accepted. Meetup not created");
-    }
-
-    if (errors.length > 0) {
-      return errors;
-    }
-    return false;
-  }
-
-  static validateResponseRequest(requestBody) {
-    const errors = [];
-
-    if (!requestBody.user_id) {
-      errors.push("The user id is missing. Response not created");
-    }
-
-    if (!requestBody.response) {
-      errors.push("The response is missing. Response not created");
     }
 
     if (errors.length > 0) {
@@ -107,16 +68,12 @@ class helpers {
       errors.push("The question id is missing. Comment not created");
     }
 
-    if (!requestBody.title) {
-      errors.push("The title is missing. Comment not created");
-    }
-
     if (!requestBody.body) {
       errors.push("The body is missing. Comment not created");
     }
 
-    if (!requestBody.comment) {
-      errors.push("The comment is missing. Comment not created");
+    if (!requestBody.profile_id) {
+      errors.push("The profile Id is missing. Comment not created");
     }
 
     if (errors.length > 0) {
@@ -147,6 +104,46 @@ class helpers {
       });
     }
     next();
+  }
+
+  static async createSignup(requestBody) {
+    const create = await Profile.create(requestBody);
+    create.password = null;
+    const payload = {
+      profile: create
+    };
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      expiresIn: "24h"
+    });
+    return token;
+  }
+
+  static async createLogin(requestBody) {
+    const authQuery = await Profile.findAll({
+      where: {
+        email: requestBody.email
+      }
+    });
+
+    if (!authQuery[0]) throw new Error("invalid credentials");
+    const isCorrectPassword = await bcrypt.compare(
+      requestBody.password,
+      authQuery[0].password
+    );
+
+    if (isCorrectPassword) {
+      authQuery[0].password = null;
+      const payload = {
+        profile: authQuery
+      };
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "24h"
+      });
+      return token;
+    }
+    if (!isCorrectPassword) {
+      throw new Error("Please Supply a Valid Password");
+    }
   }
 }
 

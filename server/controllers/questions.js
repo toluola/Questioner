@@ -1,190 +1,229 @@
-import dbConfig from "../database/dbSetup";
-import validation from "../helpers/helpers";
+import Question from "../models/question";
+import Profile from "../models/user";
 
-class questionsController {
-  static getQuestions(req, resp, next) {
-    dbConfig.query("SELECT * FROM questions", (err, res) => {
-      if (err) {
-        return next(err);
+class QuestionControllers {
+  // Creating A question
+  static async createQuestion(req, res) {
+    try {
+      const createQuestion = await Question.create({ ...req.body });
+      const questionRecord = await Profile.findAll({
+        where: {
+          id: req.body.profile_id
+        }
+      });
+
+      if (createQuestion) {
+        Profile.update(
+          {
+            questions: questionRecord[0].questions + 1
+          },
+          {
+            where: {
+              id: req.body.profile_id
+            }
+          }
+        );
       }
 
-      return resp.status(200).json({
+      res.status(201).json({
+        status: 201,
+        data: createQuestion,
+        message: "Question Created successfully"
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  // Fetching all Questions
+  static async fetchQuestions(req, res) {
+    Question.findAll({
+      attributes: { exclude: ["downvote_profiles", "upvote_profiles"] }
+    })
+      .then(result => {
+        res.status(200).json({
+          status: 200,
+          data: result,
+          message: "Questions Fetched Successfully"
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  // Upvote Question
+  static async upvoteQuestion(req, res) {
+    try {
+      const questions = await Question.findAll({
+        where: {
+          id: req.params.id
+        }
+      });
+
+      const checkDownvote = await questions[0].downvote_profiles.some(
+        downvote => downvote === req.body.profile_id
+      );
+
+      const checkUpvote = await questions[0].upvote_profiles.some(
+        upvote => upvote === req.body.profile_id
+      );
+
+      if (checkUpvote) {
+        return res.status(400).json({
+          status: 400,
+          message: "You already Voted for this question"
+        });
+      }
+
+      if (checkDownvote) {
+        const index = questions[0].downvote_profiles.indexOf(
+          req.body.profile_id
+        );
+        if (index > -1) {
+          questions[0].downvote_profiles.splice(index, 1);
+
+          Question.update(
+            {
+              downvote_profiles: questions[0].downvote_profiles
+            },
+            {
+              where: {
+                id: req.params.id
+              }
+            }
+          );
+
+          Question.update(
+            {
+              downvotes: questions[0].downvotes - 1
+            },
+            {
+              where: {
+                id: req.params.id
+              }
+            }
+          );
+        }
+      }
+
+      Question.update(
+        {
+          upvotes: questions[0].upvotes + 1
+        },
+        {
+          where: {
+            id: req.params.id
+          }
+        }
+      );
+
+      const profile = questions[0].upvote_profiles;
+      profile.push(req.body.profile_id);
+
+      Question.update(
+        {
+          upvote_profiles: profile
+        },
+        {
+          where: {
+            id: req.params.id
+          }
+        }
+      );
+      return res.status(200).json({
         status: 200,
-        questions: res.rows,
-        message: "Questions Fetched Successfully"
+        message: "You Successfully Upvoted for this Question"
       });
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  static createQuestion(req, resp, next) {
-    const validateBody = validation.validateQuestionRequest(req.body);
-    if (validateBody) {
-      return resp.status(400).json({
-        message: validateBody,
-        status: 400
-      });
-    }
-
-    const question = {
-      createdby_id: req.body.createdby_id,
-      meetup_id: req.body.meetup_id,
-      title: req.body.title,
-      body: req.body.body,
-      votes: req.body.votes
-    };
-
-    const { createdby_id, meetup_id, title, body, votes } = question;
-    dbConfig.query(
-      "INSERT INTO questions (createdby_id, meetup_id, title, body, votes) VALUES ($1,$2,$3,$4,$5) RETURNING *",
-      [createdby_id, meetup_id, title, body, votes],
-      (err, res) => {
-        if (err) {
-          if (
-            err.message ===
-            'insert or update on table "questions" violates foreign key constraint "questions_createdby_id_fkey"'
-          ) {
-            return resp.status(409).json({
-              status: 409,
-              message: "The user id you supplied does not exist. Thanks"
-            });
-          }
-
-          if (
-            err.message ===
-            'insert or update on table "questions" violates foreign key constraint "questions_meetup_id_fkey"'
-          ) {
-            return resp.status(409).json({
-              status: 409,
-              message: "The meetup id you supplied does not exist. Thanks"
-            });
-          }
-          return next(err);
+  // Downvote Question
+  static async downvoteQuestion(req, res) {
+    try {
+      const questions = await Question.findAll({
+        where: {
+          id: req.params.id
         }
+      });
 
-        return resp.status(201).json({
-          status: 201,
-          questions: res.rows[0],
-          message: "Question created Successfully"
+      const checkDownvote = await questions[0].downvote_profiles.some(
+        downvote => downvote === req.body.profile_id
+      );
+
+      const checkUpvote = await questions[0].upvote_profiles.some(
+        upvote => upvote === req.body.profile_id
+      );
+
+      if (checkDownvote) {
+        return res.status(400).json({
+          status: 400,
+          message: "You already Voted for this question"
         });
       }
-    );
-  }
 
-  static upvoteQuestion(req, resp, next) {
-    const question_id = parseInt(req.params.question_id, 10);
-    let meetupFound;
-    let newVote;
+      if (checkUpvote) {
+        const index = questions[0].upvote_profiles.indexOf(req.body.profile_id);
+        if (index > -1) {
+          questions[0].upvote_profiles.splice(index, 1);
 
-    dbConfig.query(
-      "SELECT * FROM questions WHERE id = $1",
-      [question_id],
-      (err, res) => {
-        if (err) {
-          return next(err);
-        }
-        meetupFound = res.rows[0];
-        newVote = res.rows[0].votes + 1;
-
-        if (meetupFound) {
-          dbConfig.query(
-            "UPDATE questions SET (votes) = ($1) WHERE id = $2 RETURNING *",
-            [newVote, question_id],
-            (errr, ress) => {
-              if (errr) {
-                return next(errr);
+          Question.update(
+            {
+              upvote_profiles: questions[0].upvote_profiles
+            },
+            {
+              where: {
+                id: req.params.id
               }
-
-              return resp.status(200).json({
-                status: 200,
-                MeetupVoted: ress.rows[0],
-                message: "Question upvoted Successfully"
-              });
             }
           );
-        } else {
-          resp.status(404).json({
-            status: 404,
-            message: "No Question Found"
-          });
-        }
-      }
-    );
-  }
 
-  static downvoteQuestion(req, resp, next) {
-    const question_id = parseInt(req.params.question_id, 10);
-    let meetupFound;
-    let newVote;
-
-    dbConfig.query(
-      "SELECT * FROM questions WHERE id = $1",
-      [question_id],
-      (err, res) => {
-        if (err) {
-          return next(err);
-        }
-        meetupFound = res.rows[0];
-        newVote = res.rows[0].votes - 1;
-
-        if (meetupFound) {
-          dbConfig.query(
-            "UPDATE questions SET (votes) = ($1) WHERE id = $2 RETURNING *",
-            [newVote, question_id],
-            (errr, ress) => {
-              if (errr) {
-                return next(errr);
+          Question.update(
+            {
+              upvotes: questions[0].upvotes - 1
+            },
+            {
+              where: {
+                id: req.params.id
               }
-
-              return resp.status(200).json({
-                status: 200,
-                MeetupVoted: ress.rows[0],
-                message: "Question Downvoted Successfully"
-              });
             }
           );
-        } else {
-          resp.status(404).json({
-            status: 404,
-            message: "No Question Found"
-          });
         }
       }
-    );
-  }
 
-  static createQuestionComment(req, resp, next) {
-    const validateBody = validation.validateCommentRequest(req.body);
-    if (validateBody) {
-      return resp.status(400).json({
-        message: validateBody,
-        status: 400
+      Question.update(
+        {
+          downvotes: questions[0].downvotes + 1
+        },
+        {
+          where: {
+            id: req.params.id
+          }
+        }
+      );
+
+      const profile = questions[0].downvote_profiles;
+      profile.push(req.body.profile_id);
+
+      Question.update(
+        {
+          downvote_profiles: profile
+        },
+        {
+          where: {
+            id: req.params.id
+          }
+        }
+      );
+
+      return res.status(200).json({
+        status: 200,
+        message: "You Successfully Downvoted for this Question"
       });
+    } catch (error) {
+      console.log(error);
     }
-
-    const comments = {
-      question_id: req.body.question_id,
-      title: req.body.title,
-      body: req.body.body,
-      comment: req.body.comment
-    };
-
-    const { question_id, title, body, comment } = comments;
-    dbConfig.query(
-      "INSERT INTO comments (question_id, title, body, comment) VALUES ($1,$2,$3,$4) RETURNING *",
-      [question_id, title, body, comment],
-      (err, res) => {
-        if (err) {
-          return next(err);
-        }
-
-        return resp.status(201).json({
-          status: 201,
-          questions: res.rows[0],
-          message: "Comment created Successfully"
-        });
-      }
-    );
   }
 }
 
-export default questionsController;
+export default QuestionControllers;

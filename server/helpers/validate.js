@@ -1,94 +1,9 @@
+import Profile from "../models/user";
+
 class Validate {
-	static validateMeetups(req, res, next) {
-		const string = req.body.location;
-		const top = req.body.topic;
-		const reqs = req.body.meetup;
-		const img = req.body.images;
-		const tag = req.body.tags;
-
-		if (string === "") {
-			return res.status(400).json({
-				status: 400,
-				message: "The location body can not be empty"
-			});
-		}
-
-		if (!Array.isArray(img)) {
-			return res.status(400).json({
-				status: 400,
-				message: "The images body should be an array"
-			});
-		}
-
-		if (!Array.isArray(tag)) {
-			return res.status(400).json({
-				status: 400,
-				message: "The tags body should be an array"
-			});
-		}
-
-		if (top === "") {
-			return res.status(400).json({
-				status: 400,
-				message: "The topic body can not be empty"
-			});
-		}
-		next();
-	}
-
-	static validateRespond(req, res, next) {
-		const string = req.body.location;
-		const top = req.body.topic;
-		const tag = req.body.tags;
-
-		if (string === "") {
-			return res.status(400).json({
-				status: 400,
-				message: "The location body can not be empty"
-			});
-		}
-
-		if (top === "") {
-			return res.status(400).json({
-				status: 400,
-				message: "The topic body can not be empty"
-			});
-		}
-
-		if (!Array.isArray(tag)) {
-			return res.status(400).json({
-				status: 400,
-				message: "The tags body should be an array"
-			});
-		}
-
-		next();
-	}
-
-	static validateRes(req, res, next) {
-		const stat = req.body.response;
-		const params = req.body.user_id;
-		if (params !== parseInt(params, 10)) {
-			return res.status(400).json({
-				status: 400,
-				message: "The user id should be a number"
-			});
-		}
-		if (stat === "yes" || stat === "no" || stat === "maybe") {
-			next();
-		} else {
-			return res.status(400).json({
-				status: 400,
-				message: "The status body should be 'yes', 'no' or 'maybe'"
-			});
-		}
-	}
-
 	static validateQuestion(req, res, next) {
-		const create = req.body.createdby_id;
-		const top = req.body.title;
+		const create = req.body.profile_id;
 		const reqs = req.body.meetup_id;
-		const bod = req.body.body;
 		const vot = req.body.votes;
 
 		if (create !== parseInt(create, 10)) {
@@ -102,27 +17,6 @@ class Validate {
 			return res.status(400).json({
 				status: 400,
 				message: "The meetup id you Entered should be a Number"
-			});
-		}
-
-		if (vot !== parseInt(vot, 10)) {
-			return res.status(400).json({
-				status: 400,
-				message: "The votes you Entered should be a Number"
-			});
-		}
-
-		if (top === "") {
-			return res.status(400).json({
-				status: 400,
-				message: "The title body can not be empty"
-			});
-		}
-
-		if (bod === "") {
-			return res.status(400).json({
-				status: 400,
-				message: "The body can not be empty"
 			});
 		}
 		next();
@@ -178,7 +72,23 @@ class Validate {
 		req.checkBody(["password"]).isLength({ min: 5 });
 		const errors = req.validationErrors();
 		if (errors) {
-			return res.status(422).json({ errors });
+			return res.status(422).json({ errors: errors[0].msg });
+		} 
+			next();
+	}
+
+	static async CheckMailExist(req, res, next) {
+		const mailCheck = await Profile.findAll({
+			where: {
+				email: req.body.email
+			}
+		})
+
+		if (mailCheck[0]) {
+			return res.status(404).json({
+				status: 404,
+				message: "Email Already Exist"
+			})
 		} 
 			next();
 	}

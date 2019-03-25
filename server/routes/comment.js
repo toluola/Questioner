@@ -1,15 +1,18 @@
 import express from "express";
-import questionsController from "../controllers/questions";
+import commentsController from "../controllers/comment";
 import authRoute from "../helpers/authenticate";
-import Validate from "../helpers/validate";
+import middleware from "../middlewares/comment";
 
 const router = express.Router();
 
 router.post(
   "/",
   authRoute.verifyToken,
-  Validate.validateComment,
-  questionsController.createQuestionComment
+  middleware.checkComment,
+  middleware.checkQuestionIdExist,
+  commentsController.createComment
 );
+
+router.get("/", authRoute.verifyToken, commentsController.fetchComments);
 
 export default router;
