@@ -1,4 +1,5 @@
 import Profile from "../models/user";
+import Meetup from "../models/meetup";
 
 Profile.bulkCreate([
   {
@@ -16,3 +17,29 @@ Profile.bulkCreate([
     password: "$2b$05$trEqCsQFMC7N.gVK2yM39eLonMNsei8vdoCBfGGVOtnjWFRmCzvA6"
   }
 ]);
+
+Meetup.bulkCreate([{
+  images: 'java.jpg',
+  location: 'victoria island',
+  tags: 'java',
+  topic: 'java in nigeria',
+  happening_on: '2019-03-04',
+  status: 'active',
+},
+{
+  images: 'java.jpg',
+  location: 'victoria island',
+  tags: 'java',
+  topic: 'Python in nigeria',
+  happening_on: '2019-03-04',
+  status: 'active',
+},
+{
+  images: 'java.jpg',
+  location: 'victoria island',
+  tags: 'java',
+  topic: 'javascript in nigeria',
+  happening_on: '2019-03-04',
+  status: 'active',
+}
+])

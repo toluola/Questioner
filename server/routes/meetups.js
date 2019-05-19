@@ -11,7 +11,7 @@ router.post(
   validateMeetup.validateMeetupRequest,
   meetupsController.createMeetup
 );
-router.get("/", authRoute.verifyToken, meetupsController.viewMeetups);
+router.get("/", meetupsController.viewMeetups);
 router.get("/:id", authRoute.verifyToken, meetupsController.viewSingleMeetup);
 router.delete(
   "/:id",
