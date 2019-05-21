@@ -142,7 +142,7 @@ class helpers {
       return token;
     }
     if (!isCorrectPassword) {
-      throw new Error("Please Supply a Valid Password");
+      throw new Error("Incorrect Password or Email.");
     }
   }
 }
