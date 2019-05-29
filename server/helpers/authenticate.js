@@ -19,7 +19,7 @@ const Auth = {
       if(decoded){
         const checkUser =  await Profile.findAll({
           where: {
-            id: decoded.profile[0].id
+            id: decoded.profile.id
           }
         })
         if (!checkUser[0]) {
@@ -32,8 +32,8 @@ const Auth = {
           message: "Invalid Token Provided"
         })
       }
-      req.user = decoded.profile[0];
-      // console.log(req.user);
+      req.user = decoded.profile;
+      console.log(req.user);
       next();
     } catch (error) {
       return res.status(400).json({status: 400, message: error.message});

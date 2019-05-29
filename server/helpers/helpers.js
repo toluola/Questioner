@@ -126,7 +126,7 @@ class helpers {
     if (isCorrectPassword) {
       authQuery[0].password = null;
       const payload = {
-        profile: authQuery
+        profile: authQuery[0]
       };
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "24h"
