@@ -1,7 +1,5 @@
 import Sequelize from "sequelize";
 import sequelize from "../database/dbSetup";
-import question from "./question";
-import profile from "./user";
 
 // comment model set up
 const comment = sequelize.define(
@@ -22,17 +20,21 @@ const comment = sequelize.define(
       type: Sequelize.DATEONLY,
       defaultValue: Sequelize.NOW,
       notNull: true
-    }
+    },
+    profile_id: {
+      type: Sequelize.INTEGER,
+      notNull: true
+    },
+    question_id: {
+      type: Sequelize.INTEGER,
+      notNull: true
+    },
   },
   {
-    timestamps: false,
+    timestamps: true,
     underscored: true
   }
 );
-
-// Associating comments with profile and meetup
-comment.belongsTo(profile);
-comment.belongsTo(question);
 
 comment.sync();
 

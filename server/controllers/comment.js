@@ -5,10 +5,15 @@ class CommentsController {
   // Creating a Comment Record
   static async createComment(req, res) {
     try {
-      const createComment = await Comment.create({ ...req.body });
+      console.log(req.params.id);
+      const createComment = await Comment.create({
+        body: req.body.body,
+        profile_id: req.user.id,
+        question_id: req.params.questionId
+      });
       const commentRecord = await Profile.findAll({
         where: {
-          id: req.body.profile_id
+          id: req.user.id
         }
       });
 
@@ -19,7 +24,7 @@ class CommentsController {
           },
           {
             where: {
-              id: req.body.profile_id
+              id: req.user.id
             }
           }
         );
@@ -37,7 +42,11 @@ class CommentsController {
 
   // Viewing all Comment Records
   static async fetchComments(req, res) {
-    Comment.findAll()
+    Comment.findAll({
+      where: {
+        question_id: req.params.questionId
+      }
+    })
       .then(result => {
         res.status(200).json({
           status: 200,

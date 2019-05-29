@@ -7,17 +7,14 @@ import validate from "../helpers/validate";
 const router = express.Router();
 
 router.post(
-  "/",
+  "/:meetupId",
   authRoute.verifyToken,
-  middleware.validateQuestions,
-  validate.validateQuestion,
-  middleware.checkIds,
   questionsController.createQuestion
 );
 router.get(
-  "/",
+  "/:meetupId",
   authRoute.verifyToken,
-  questionsController.fetchQuestions
+  questionsController.fetchMeetupQuestions
 );
 
 router.patch(

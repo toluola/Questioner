@@ -38,6 +38,14 @@ const Question = sequelize.define(
     upvote_profiles: {
       type: Sequelize.ARRAY(Sequelize.INTEGER),
       defaultValue: []
+    },
+    profile_id: {
+      type: Sequelize.INTEGER,
+      notNull: true
+    },
+    meetup_id: {
+      type: Sequelize.INTEGER,
+      notNull: true
     }, 
   },
   {
@@ -45,10 +53,6 @@ const Question = sequelize.define(
     underscored: true
   }
 );
-
-// Associating questions with profile and meetup
-Question.belongsTo(profile);
-Question.belongsTo(meetup);
 
 Question.sync();
 

@@ -10,7 +10,7 @@ const Auth = {
    * @returns {object|void} response object
    */
   async verifyToken(req, res, next) {
-    const token = req.headers["access-token"];
+    const token = req.headers.authorization;
     if (!token) {
       return res.status(400).send({ message: "Token not provided" });
     }
@@ -32,8 +32,8 @@ const Auth = {
           message: "Invalid Token Provided"
         })
       }
-      
-      req.auth_token = decoded;
+      req.user = decoded.profile[0];
+      // console.log(req.user);
       next();
     } catch (error) {
       return res.status(400).json({status: 400, message: error.message});
@@ -49,7 +49,7 @@ const Auth = {
    */
   async verifyTokenAdmin(req, res, next) {
     try {
-      const token = req.headers["access-token"];
+      const token = req.headers.authorization;
       if (!token) {
         return res.status(400).send({ message: "Token not provided" });
       }

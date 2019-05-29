@@ -6,13 +6,11 @@ import middleware from "../middlewares/comment";
 const router = express.Router();
 
 router.post(
-  "/",
+  "/:questionId",
   authRoute.verifyToken,
-  middleware.checkComment,
-  middleware.checkQuestionIdExist,
   commentsController.createComment
 );
 
-router.get("/", authRoute.verifyToken, commentsController.fetchComments);
+router.get("/:questionId", authRoute.verifyToken, commentsController.fetchComments);
 
 export default router;

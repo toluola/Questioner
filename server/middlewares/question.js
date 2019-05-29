@@ -48,7 +48,7 @@ class CheckQuestions {
 
     const profile = await Profile.findOne({
       where: {
-        id: req.body.profile_id
+        id: req.user.id
       }
     })
 

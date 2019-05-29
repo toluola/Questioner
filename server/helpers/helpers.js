@@ -64,16 +64,8 @@ class helpers {
   static validateCommentRequest(requestBody) {
     const errors = [];
 
-    if (!requestBody.question_id) {
-      errors.push("The question id is missing. Comment not created");
-    }
-
     if (!requestBody.body) {
       errors.push("The body is missing. Comment not created");
-    }
-
-    if (!requestBody.profile_id) {
-      errors.push("The profile Id is missing. Comment not created");
     }
 
     if (errors.length > 0) {

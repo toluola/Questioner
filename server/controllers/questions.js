@@ -5,10 +5,14 @@ class QuestionControllers {
   // Creating A question
   static async createQuestion(req, res) {
     try {
-      const createQuestion = await Question.create({ ...req.body });
+      const createQuestion = await Question.create({ 
+        body: req.body.body,
+        profile_id: req.user.id,
+        meetup_id: req.params.meetupId
+       });
       const questionRecord = await Profile.findAll({
         where: {
-          id: req.body.profile_id
+          id: req.user.id
         }
       });
 
@@ -19,7 +23,7 @@ class QuestionControllers {
           },
           {
             where: {
-              id: req.body.profile_id
+              id: req.user.id
             }
           }
         );
@@ -35,20 +39,39 @@ class QuestionControllers {
     }
   }
 
-  // Fetching all Questions
-  static async fetchQuestions(req, res) {
-    Question.findAll({
-      attributes: { exclude: ["downvote_profiles", "upvote_profiles"] }
-    })
-      .then(result => {
-        res.status(200).json({
-          status: 200,
-          data: result,
-          message: "Questions Fetched Successfully"
-        });
-      })
-      .catch(err => console.log(err));
-  }
+  // // Fetching all Questions
+  // static async fetchQuestions(req, res) {
+  //   Question.findAll({
+  //     attributes: { exclude: ["downvote_profiles", "upvote_profiles"] }
+  //   })
+  //     .then(result => {
+  //       res.status(200).json({
+  //         status: 200,
+  //         data: result,
+  //         message: "Questions Fetched Successfully"
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // }
+
+
+  // fetching Questions of a single meetup
+      static async fetchMeetupQuestions(req, res) {
+        Question.findAll({
+          where: {
+            meetup_id: req.params.meetupId
+          }
+        })
+        .then(result => {
+          res.status(200).json({
+            status: 200,
+            data: result,
+            message: "Questions fetched successfully"
+          })
+        }).catch(err => res.status(500).json({
+          message: 'something went wrong'
+        }))
+      }
 
   // Upvote Question
   static async upvoteQuestion(req, res) {
@@ -60,11 +83,11 @@ class QuestionControllers {
       });
 
       const checkDownvote = await questions[0].downvote_profiles.some(
-        downvote => downvote === req.body.profile_id
+        downvote => downvote === req.user.id
       );
 
       const checkUpvote = await questions[0].upvote_profiles.some(
-        upvote => upvote === req.body.profile_id
+        upvote => upvote === req.user.id
       );
 
       if (checkUpvote) {
@@ -76,7 +99,7 @@ class QuestionControllers {
 
       if (checkDownvote) {
         const index = questions[0].downvote_profiles.indexOf(
-          req.body.profile_id
+          req.user.id
         );
         if (index > -1) {
           questions[0].downvote_profiles.splice(index, 1);
@@ -117,7 +140,7 @@ class QuestionControllers {
       );
 
       const profile = questions[0].upvote_profiles;
-      profile.push(req.body.profile_id);
+      profile.push(req.user.id);
 
       Question.update(
         {
@@ -148,11 +171,11 @@ class QuestionControllers {
       });
 
       const checkDownvote = await questions[0].downvote_profiles.some(
-        downvote => downvote === req.body.profile_id
+        downvote => downvote === req.user.id
       );
 
       const checkUpvote = await questions[0].upvote_profiles.some(
-        upvote => upvote === req.body.profile_id
+        upvote => upvote === req.user.id
       );
 
       if (checkDownvote) {
@@ -163,7 +186,7 @@ class QuestionControllers {
       }
 
       if (checkUpvote) {
-        const index = questions[0].upvote_profiles.indexOf(req.body.profile_id);
+        const index = questions[0].upvote_profiles.indexOf(req.user.id);
         if (index > -1) {
           questions[0].upvote_profiles.splice(index, 1);
 
@@ -203,7 +226,7 @@ class QuestionControllers {
       );
 
       const profile = questions[0].downvote_profiles;
-      profile.push(req.body.profile_id);
+      profile.push(req.user.id);
 
       Question.update(
         {
