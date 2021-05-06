@@ -71,7 +71,7 @@
     "sequelize": "^5.8.5",
     "sequelize-cli": "^5.4.0",
     "sequelize-pg-utilities": "^1.0.8",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "prettier": "^1.15.3"
